@@ -1,69 +1,58 @@
-<div class="body-form">
-    <div class="centered-container">
-        <div class="col-6">
-            <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center" class="custom-tab-group">
-                <mat-tab label="Login">
-                    <div class="container mt-5">
-                        <div class="row justify-content-center">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="mb-0">Đăng nhập</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="form-group">
-                                            <label for="inputEmail" id="email">Email</label>
-                                            <input class="form-control" id="inputEmail" #email placeholder="Nhập email" required autofocus>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputPassword">Mật khẩu</label>
-                                            <input type="password" class="form-control" id="inputPassword" #pass placeholder="Nhập mật khẩu" required autofocus>
-                                        </div>
-                                        <button class="btn btn-outline-primary" (click)="login()">Đăng nhập</button>
-                                    </div>
-                                    <p *ngIf="isLoggedIn" class="message-logined">you are logged in</p>
-                                    <div class="card-body btn-logout" *ngIf="isLoggedIn">
-                                        <button type="button" class="btn btn-outline-warning" (click)="Logout()">Logout</button>
-                                    </div>
+<div class="form-body">
+    <mat-tab-group>
+        <mat-tab label="Login">
+            <div class="container mt-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="mb-0">Đăng nhập</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group mb-3">
+                                    <input class="form-control" id="inputEmail" #email placeholder="Nhập email" required autofocus>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input type="password" class="form-control" id="inputPassword" #pass placeholder="Nhập mật khẩu" required autofocus>
+                                </div>
+                                <button class="btn btn-outline-primary w-100 mb-3" (click)="login()">Đăng nhập</button>
+                                <p *ngIf="isLoggedIn" class="message-logined">you are logged in</p>
+                                <div class="card-body btn-logout p-0" *ngIf="isLoggedIn">
+                                    <button type="button" class="btn btn-outline-warning w-100" (click)="Logout()">Logout</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </mat-tab>
-
-                <mat-tab label="Register">
-                    <div class="container mt-5">
-                        <div class="row justify-content-center">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="mb-0">Đăng ký</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="form-group">
-                                            <label for="inputEmail">Email</label>
-                                            <input type="email" class="form-control" id="inputEmail" placeholder="Nhập email" #emailRegister>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputUsername">User name</label>
-                                            <input type="text" class="form-control" id="inputUsername" placeholder="Nhập tên dùng" #usernameRegister>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputPassword">Mật khẩu</label>
-                                            <input type="password" class="form-control" id="inputPassword" placeholder="Nhập mật khẩu" #password>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputRePassword">Nhập lại Mật khẩu</label>
-                                            <input type="password" class="form-control" id="inputRePassword" placeholder="Nhập lại mật khẩu" #repassword>
-                                        </div>
-                                        <button class="btn btn-outline-primary" (click)="Register()">Đăng ký</button>
-                                    </div>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Register">
+            <div class="container mt-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="mb-0">Đăng ký</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group mb-3">
+                                    <input type="email" class="form-control" id="inputEmail" placeholder="Nhập email" #emailRegister>
                                 </div>
+                                <div class="form-group mb-3">
+                                    <input type="text" class="form-control" id="inputUsername" placeholder="Nhập tên dùng" #usernameRegister>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input type="password" class="form-control" id="inputPassword" placeholder="Nhập mật khẩu" #password>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input type="password" class="form-control" id="inputRePassword" placeholder="Nhập lại mật khẩu" #repassword>
+                                </div>
+                                <button class="btn btn-outline-primary w-100" (click)="Register()">Đăng ký</button>
                             </div>
                         </div>
                     </div>
-                </mat-tab>
-            </mat-tab-group>
-        </div>
-    </div>
+                </div>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
 </div>

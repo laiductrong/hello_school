@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AccountService } from '../../services/account.service';
 
 @Component({
   selector: 'app-account',
@@ -8,9 +9,19 @@ import { Component } from '@angular/core';
 export class AccountComponent {
   isLoggedIn: boolean = false;
 
+  constructor(
+    private accountService: AccountService
+  ){}
 
   login() {
-    alert("Login");
+    this.accountService.getUser().subscribe((acc)=>{
+      if(acc.success) {
+        alert("ss");
+      }
+      else {
+        alert("fail");
+      }
+    });
   }
   Logout() {
     alert("Logout");
