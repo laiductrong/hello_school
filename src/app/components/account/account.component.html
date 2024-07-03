@@ -1,3 +1,8 @@
+<div class="col-4">
+    <div class="notifi" *ngIf="isNotifi">
+        <ngb-alert [type]="type" (click)="close()">{{notification}}</ngb-alert>
+    </div>
+</div>
 <div class="form-body">
     <mat-tab-group>
         <mat-tab label="Login">
@@ -10,12 +15,12 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group mb-3">
-                                    <input class="form-control" id="inputEmail" #email placeholder="Nhập email" required autofocus>
+                                    <input class="form-control" id="inputUsername" #username placeholder="Nhập email" required autofocus>
                                 </div>
                                 <div class="form-group mb-3">
                                     <input type="password" class="form-control" id="inputPassword" #pass placeholder="Nhập mật khẩu" required autofocus>
                                 </div>
-                                <button class="btn btn-outline-primary w-100 mb-3" (click)="login()">Đăng nhập</button>
+                                <button class="btn btn-outline-primary w-100 mb-3" (click)="login(username.value, pass.value)">Đăng nhập</button>
                                 <p *ngIf="isLoggedIn" class="message-logined">you are logged in</p>
                                 <div class="card-body btn-logout p-0" *ngIf="isLoggedIn">
                                     <button type="button" class="btn btn-outline-warning w-100" (click)="Logout()">Logout</button>
