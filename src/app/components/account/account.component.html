@@ -1,63 +1,93 @@
-<div class="col-4">
-    <div class="notifi" *ngIf="isNotifi">
-        <ngb-alert [type]="type" (click)="close()">{{notification}}</ngb-alert>
+<div>
+    <div class="row notifi">
+        <div class="col-lg-8">
+
+        </div>
+        <div class="col-lg-4">
+            <div class="notifi" *ngIf="isNotifi">
+                <ngb-alert [type]="type" (click)="close()">{{notification}}</ngb-alert>
+            </div>
+        </div>
+
     </div>
-</div>
-<div class="form-body">
-    <mat-tab-group>
-        <mat-tab label="Login">
-            <div class="container mt-5">
-                <div class="row justify-content-center">
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="mb-0">Đăng nhập</h4>
+
+    <div class="row form">
+
+        <div class="col-lg-3">
+
+        </div>
+        <div class="col-lg-6">
+
+            <div class="form-body">
+                <mat-tab-group>
+                    <mat-tab label="Login">
+                        <div class="container mt-5">
+                            <div class="row justify-content-center">
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4 class="mb-0">Đăng nhập</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group mb-3">
+                                                <input class="form-control" id="inputUsername" #username
+                                                    placeholder="Nhập email" required autofocus>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <input type="password" class="form-control" id="inputPassword" #pass
+                                                    placeholder="Nhập mật khẩu" required autofocus>
+                                            </div>
+                                            <button class="btn btn-outline-primary w-100 mb-3"
+                                                (click)="login(username.value, pass.value)">Đăng nhập</button>
+                                            <p *ngIf="isLoggedIn" class="message-logined">you are logged in</p>
+                                            <div class="card-body btn-logout p-0" *ngIf="isLoggedIn">
+                                                <button type="button" class="btn btn-outline-warning w-100"
+                                                    (click)="Logout()">Logout</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <div class="form-group mb-3">
-                                    <input class="form-control" id="inputUsername" #username placeholder="Nhập email" required autofocus>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <input type="password" class="form-control" id="inputPassword" #pass placeholder="Nhập mật khẩu" required autofocus>
-                                </div>
-                                <button class="btn btn-outline-primary w-100 mb-3" (click)="login(username.value, pass.value)">Đăng nhập</button>
-                                <p *ngIf="isLoggedIn" class="message-logined">you are logged in</p>
-                                <div class="card-body btn-logout p-0" *ngIf="isLoggedIn">
-                                    <button type="button" class="btn btn-outline-warning w-100" (click)="Logout()">Logout</button>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Register">
+                        <div class="container mt-5">
+                            <div class="row justify-content-center">
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4 class="mb-0">Đăng ký</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group mb-3">
+                                                <input type="email" class="form-control" id="inputEmail"
+                                                    placeholder="Nhập email" #emailRegister>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <input type="text" class="form-control" id="inputUsername"
+                                                    placeholder="Nhập tên dùng" #usernameRegister>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <input type="password" class="form-control" id="inputPassword"
+                                                    placeholder="Nhập mật khẩu" #password>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <input type="password" class="form-control" id="inputRePassword"
+                                                    placeholder="Nhập lại mật khẩu" #repassword>
+                                            </div>
+                                            <button class="btn btn-outline-primary w-100" (click)="Register()">Đăng
+                                                ký</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </mat-tab>
+                </mat-tab-group>
             </div>
-        </mat-tab>
-        <mat-tab label="Register">
-            <div class="container mt-5">
-                <div class="row justify-content-center">
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="mb-0">Đăng ký</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group mb-3">
-                                    <input type="email" class="form-control" id="inputEmail" placeholder="Nhập email" #emailRegister>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <input type="text" class="form-control" id="inputUsername" placeholder="Nhập tên dùng" #usernameRegister>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <input type="password" class="form-control" id="inputPassword" placeholder="Nhập mật khẩu" #password>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <input type="password" class="form-control" id="inputRePassword" placeholder="Nhập lại mật khẩu" #repassword>
-                                </div>
-                                <button class="btn btn-outline-primary w-100" (click)="Register()">Đăng ký</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </mat-tab>
-    </mat-tab-group>
+        </div>
+        <div class="col-3">
+
+        </div>
+    </div>
 </div>
