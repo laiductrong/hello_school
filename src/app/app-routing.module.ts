@@ -2,13 +2,19 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountComponent } from './components/account/account.component'; // Import AccountComponent
 import { HomeComponent } from './components/home/home.component';
+import { StudentComponent } from './student/student.component';
+import { AcademicComponent } from './academic/academic.component';
+import { IndexComponent } from './index/index.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
-  { path: 'account', component: AccountComponent }, // Login + Register
-  // Thêm các route khác ở đây
-  { path: '', redirectTo: '/account', pathMatch: 'full' }, // Redirect mặc định để test
-  { path: '**', redirectTo: '/account' } // Redirect cho các route không tồn tại
+  { path: '', component: IndexComponent },
+  { path: 'account', component: AccountComponent },
+  { path: 'home', component: HomeComponent, children: [
+    { path: 'student', component: StudentComponent },
+    { path: 'academic', component: AcademicComponent }
+  ] },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
