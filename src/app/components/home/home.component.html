@@ -1,6 +1,24 @@
-<nav>
-  <a routerLink="student">student</a>
-  <a routerLink="academic">academic</a>
-</nav>
-
-<router-outlet></router-outlet>
+<div style="display: flex;">
+  <nav class="vertical-navbar">
+    <div class="navbar-header">
+      <a class="navbar-brand" routerLink="/">Logo</a>
+    </div>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="student" routerLinkActive="active">Student</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="academic" routerLinkActive="active">Academic</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/services" routerLinkActive="active">Services</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="router-outlet-container">
+    <router-outlet></router-outlet>
+  </div>
+</div>
