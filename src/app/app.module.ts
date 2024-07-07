@@ -30,11 +30,12 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AppRoutingModule,
     NgbModule,
     MatTabsModule, // Tab
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     provideClientHydration(),
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    provideHttpClient(withFetch())
   ],
   bootstrap: [AppComponent]
 })

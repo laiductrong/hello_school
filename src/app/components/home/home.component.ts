@@ -6,10 +6,14 @@ import { Component } from '@angular/core';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  isNavbarOpen: boolean = false;
-
-  toggleNavbar() {
-    this.isNavbarOpen = !this.isNavbarOpen;
+  toggleMenu(): void {
+    const element = document.querySelector('.topnav');
+    if (element?.classList.contains('responsive')) {
+      element.classList.remove('responsive');
+    } else {
+      element?.classList.add('responsive');
+    }
   }
+  
   
 }
