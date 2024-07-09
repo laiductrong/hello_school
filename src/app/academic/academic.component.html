@@ -1,1 +1,19 @@
-<p>academic works!</p>
+<div class="container mt-4">
+    <h2>List of Students</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let academic of data">
+          <td>{{academic.yearId}}</td>
+          <td>{{academic.yearName}}</td>       
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

@@ -20,7 +20,7 @@ export class StudentComponent {
   ngOnInit(): void {
     this.studentService.getUser().subscribe((res) => {
       if(res.success) {
-        console.log(res.data);
+        this.students = res.data;
       }
       else{
         console.log(res.message);

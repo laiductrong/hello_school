@@ -13,7 +13,15 @@
         </tr>
       </thead>
       <tbody>
-        
+        <tr *ngFor="let student of students">
+          <td>{{student.studentId}}</td>
+          <td>{{student.name}}</td>
+          <td>{{student.birthDate}}</td>
+          <td>{{student.address}}</td>
+          <td>{{student.phoneNumber}}</td>
+          <td>{{student.email}}</td>
+          <td>{{student.className}}</td>
+        </tr>
       </tbody>
     </table>
   </div>
