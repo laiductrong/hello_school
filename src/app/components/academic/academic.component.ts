@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AcademicService } from '../services/academic.service';
+import { AcademicService } from '../../services/academic.service';
+import { Academic } from '../../models/academic';
 
 @Component({
   selector: 'app-academic',
@@ -14,12 +15,12 @@ export class AcademicComponent {
     
     
   }
-  data: any[] = [];
+  academics: Academic[] = [];
   ngOnInit(): void {
     this.academicService.GetAY().subscribe((res) => {
       if(res.success) {
         console.log(res.data);
-        this.data = res.data;
+        this.academics = res.data;
       }
       else{
         console.log(res.message);

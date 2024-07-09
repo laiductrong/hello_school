@@ -9,10 +9,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {MatTabsModule} from '@angular/material/tabs';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
-import { StudentComponent } from './student/student.component';
-import { AcademicComponent } from './academic/academic.component';
+import { StudentComponent } from './components/student/student.component';
+import { AcademicComponent } from './components/academic/academic.component';
 import { IndexComponent } from './index/index.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ClassComponent } from './components/class/class.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     StudentComponent,
     AcademicComponent,
     IndexComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ClassComponent
   ],
   imports: [
     BrowserModule,

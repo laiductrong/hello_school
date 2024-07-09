@@ -1,0 +1,24 @@
+<div class="container mt-4">
+    <h2>List of Students</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Year Id</th>
+          <th>Year Name</th>
+          <th>Teacher Id</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let class of classs">
+          <td>{{class.classId}}</td>
+          <td>{{class.className}}</td>
+          <td>{{class.yearId}}</td>
+          <td>{{class.yearName}}</td>
+          <td>{{class.teacherId}}</td>
+          
+        </tr>
+      </tbody>
+    </table>
+  </div>
