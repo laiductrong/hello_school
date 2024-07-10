@@ -14,6 +14,7 @@ import { AcademicComponent } from './components/academic/academic.component';
 import { IndexComponent } from './index/index.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ClassComponent } from './components/class/class.component';
+import { JwtModule } from '@auth0/angular-jwt'; 
 
 
 @NgModule({
@@ -33,6 +34,18 @@ import { ClassComponent } from './components/class/class.component';
     NgbModule,
     MatTabsModule, // Tab
     HttpClientModule,
+
+    // JWT
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem('account_school');
+        },
+        allowedDomains: ['localhost:7084'], // Thay đổi theo domain của bạn
+        disallowedRoutes: [] // Thay đổi theo route bị từ chối
+      }
+    })
+    
   ],
   providers: [
     provideClientHydration(),

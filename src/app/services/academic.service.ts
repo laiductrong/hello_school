@@ -4,7 +4,10 @@ import { Observable } from 'rxjs/internal/Observable';
 import { serviceResponse } from '../models/serviceResponse';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + localStorage.getItem('account_school')
+  })
 };
 @Injectable({
   providedIn: 'root'

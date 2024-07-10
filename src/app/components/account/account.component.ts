@@ -29,9 +29,9 @@ export class AccountComponent {
         this.notification = 'Đăng nhập thành công';
         this.isNotifi = true;
         setTimeout(() => {
-          localStorage.removeItem('accoutLogin');
+          localStorage.removeItem('account_school');
           const expireTime = new Date().getTime() + 3600 * 1000; // Thời gian hết hạn sau 1 giờ
-          localStorage.setItem('accoutLogin', acc.data);
+          localStorage.setItem('account_school', acc.data);
           localStorage.setItem('expireTime', expireTime.toString());
           this.isNotifi = false;
           //this.router.navigate(['/']);
