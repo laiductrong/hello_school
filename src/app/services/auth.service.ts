@@ -23,6 +23,15 @@ export class AuthService {
     return null;
   }
 
+  getUserName(): string | null {
+    const token = localStorage.getItem('account_school');
+    if (token && !this.jwtHelper.isTokenExpired(token)) {
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      return decodedToken['username'] || null;
+    }
+    return null;
+  }
+
   isAuthenticated(): boolean {
     // Kiểm tra nếu người dùng đã xác thực hay chưa
     return !!localStorage.getItem('account_school'); // Ví dụ, kiểm tra token

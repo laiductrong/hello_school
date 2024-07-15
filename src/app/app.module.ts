@@ -15,6 +15,8 @@ import { IndexComponent } from './index/index.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ClassComponent } from './components/class/class.component';
 import { JwtModule } from '@auth0/angular-jwt'; 
+import { AuthService } from './services/auth.service';
+import { AuthChildGuard } from './guards/authchild.guard';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import { JwtModule } from '@auth0/angular-jwt';
   providers: [
     provideClientHydration(),
     provideAnimationsAsync(),
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()),
+    AuthService,
+    AuthChildGuard,
   ],
   bootstrap: [AppComponent]
 })

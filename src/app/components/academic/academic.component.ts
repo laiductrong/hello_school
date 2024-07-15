@@ -23,7 +23,6 @@ export class AcademicComponent {
     
     this.academicService.GetAY().subscribe((res) => {
       if(res.success) {
-        console.log(res.data);
         this.academics = res.data;
       }
       else{

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AccountService } from '../../services/account.service';
 import { Login } from '../../models/login';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account',
@@ -16,7 +17,8 @@ export class AccountComponent {
   isNotifi = false;
 
   constructor(
-    private accountService: AccountService
+    private accountService: AccountService,
+    private router: Router,
   ){}
 
   close() {
@@ -34,7 +36,7 @@ export class AccountComponent {
           localStorage.setItem('account_school', acc.data);
           localStorage.setItem('expireTime', expireTime.toString());
           this.isNotifi = false;
-          //this.router.navigate(['/']);
+          this.router.navigate(['/home']);
         }, 1500);
       } else {
         this.notification = 'Vui lòng kiểm tra lại tài khoản';
