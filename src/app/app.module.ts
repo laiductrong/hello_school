@@ -16,7 +16,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ClassComponent } from './components/class/class.component';
 import { JwtModule } from '@auth0/angular-jwt'; 
 import { AuthService } from './services/auth.service';
-import { AuthChildGuard } from './guards/authchild.guard';
+import { GradeComponent } from './components/grade/grade.component';
+import { SubjectComponent } from './components/subject/subject.component';
+import { ManagerAccountComponent } from './components/manager-account/manager-account.component';
 
 
 @NgModule({
@@ -28,7 +30,10 @@ import { AuthChildGuard } from './guards/authchild.guard';
     AcademicComponent,
     IndexComponent,
     NotFoundComponent,
-    ClassComponent
+    ClassComponent,
+    GradeComponent,
+    SubjectComponent,
+    ManagerAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -53,8 +58,7 @@ import { AuthChildGuard } from './guards/authchild.guard';
     provideClientHydration(),
     provideAnimationsAsync(),
     provideHttpClient(withFetch()),
-    AuthService,
-    AuthChildGuard,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

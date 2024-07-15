@@ -7,15 +7,23 @@ import { AcademicComponent } from './components/academic/academic.component';
 import { IndexComponent } from './index/index.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ClassComponent } from './components/class/class.component';
-import { authtestGuard } from './guards/authtest.guard';
+import { authGuard } from './guards/auth.guard';
+import { GradeComponent } from './components/grade/grade.component';
+import { SubjectComponent } from './components/subject/subject.component';
+import { ManagerAccountComponent } from './components/manager-account/manager-account.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent },
   { path: 'account', component: AccountComponent },
-  { path: 'home', component: HomeComponent,canActivateChild: [authtestGuard] ,children: [
-    { path: 'student', component: StudentComponent },
-    { path: 'academic', component: AcademicComponent },
-    { path: 'class', component: ClassComponent }
+  { path: 'home', component: HomeComponent,
+    canActivateChild: [authGuard] ,
+    children: [
+      { path: 'academic', component: AcademicComponent },
+      { path: 'student', component: StudentComponent },
+      { path: 'class', component: ClassComponent },
+      { path: 'grade', component: GradeComponent },
+      { path: 'subject', component: SubjectComponent },
+      { path: 'manager-account', component: ManagerAccountComponent }
   ] },
   { path: '**', component: NotFoundComponent },
 ];
