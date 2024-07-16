@@ -14,6 +14,14 @@ export const authGuard: CanActivateFn = (route, state) => {
       if (authService.getUserRole() === 'Teacher' || authService.getUserRole() === 'Manager') {
         return true;
       }}
+      if(state.url.includes('/student')) {
+        if (authService.getUserRole() === 'Teacher' || authService.getUserRole() === 'Manager') {
+          return true;
+      }}
+      if(state.url.includes('/class')) {
+        if (authService.getUserRole() === 'Teacher' || authService.getUserRole() === 'Manager') {
+          return true;
+      }}
 
     return true;
 };

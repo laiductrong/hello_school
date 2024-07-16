@@ -30,4 +30,13 @@ export class AcademicComponent {
       }
     })
   }
+  addAcademic() {
+    console.log("Add");
+  }
+  updateAcademic(id: number) {
+    console.log(id);
+  }
+  deleteAcademic(id: number) {
+    console.log(id);
+  }
 }

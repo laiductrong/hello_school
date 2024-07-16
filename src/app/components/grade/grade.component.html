@@ -1,1 +1,27 @@
-<p>grade works!</p>
+<div class="container mt-4">
+    <h2>List of Grades</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Grade ID</th>
+          <th>Student ID</th>
+          <th>Student Name</th>
+          <th>Teacher ID</th>
+          <th>Teacher Name</th>
+          <th>Subject Name</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let grade of grades">
+          <td>{{grade.gradeId}}</td>
+          <td>{{grade.studentId}}</td>
+          <td>{{grade.studentName}}</td>
+          <td>{{grade.teacherId}}</td>
+          <td>{{grade.teacherName}}</td>
+          <td>{{grade.subjectName}}</td>
+          <td>{{grade.score}}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>

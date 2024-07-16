@@ -1,17 +1,22 @@
 <div class="container mt-4">
+  <button class="btn btn-success" (click)="addAcademic()">Add</button>
     <h2>List of Students</h2>
     <table class="table table-striped">
       <thead>
         <tr>
           <th>ID</th>
           <th>Name</th>
-          
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let academic of academics">
           <td>{{academic.yearId}}</td>
-          <td>{{academic.yearName}}</td>       
+          <td>{{academic.yearName}}</td>
+          <td>
+            <button class="btn btn-primary" (click)="updateAcademic(academic.yearId)">Update</button>
+            <button class="btn btn-danger" (click)="deleteAcademic(academic.yearId)">Delete</button>
+          </td>      
         </tr>
       </tbody>
     </table>
