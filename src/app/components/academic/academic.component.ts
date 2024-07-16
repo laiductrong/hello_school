@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { AcademicService } from '../../services/academic.service';
 import { Academic } from '../../models/academic';
-import { log } from 'console';
 import { AuthService } from '../../services/auth.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-academic',
@@ -13,10 +13,16 @@ export class AcademicComponent {
   /**
    *
    */
-  constructor(private academicService: AcademicService ,private auth: AuthService) {
+  constructor(private modalService: NgbModal,private academicService: AcademicService ,private auth: AuthService) {
     
     
   }
+
+  
+  openScrollableContent(longContent: any) {
+		this.modalService.open(longContent, { scrollable: true });
+	}
+
   academics: Academic[] = [];
   ngOnInit(): void {
     console.log(this.auth.getUserRole());

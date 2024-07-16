@@ -6,7 +6,7 @@ import { AccountComponent } from './components/account/account.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule} from '@angular/material/tabs';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { StudentComponent } from './components/student/student.component';
 import { AcademicComponent } from './components/academic/academic.component';
