@@ -30,4 +30,9 @@ export class AcademicService {
       .pipe(
       );
   }
+  public UpdateAcademic(updateAcademic: AddAcademic): Observable<serviceResponse> {
+    return this.http.put<serviceResponse>(this.url + "/UpdateAcademicYear", updateAcademic, httpOptions)
+      .pipe(
+      );
+  }
 }

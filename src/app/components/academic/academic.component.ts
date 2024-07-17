@@ -16,12 +16,19 @@ export class AcademicComponent {
   constructor(private modalService: NgbModal,private academicService: AcademicService ,private auth: AuthService) {
       
   }
+  academicEdit : Academic = {yearId: 0, yearName: ''};
 
   
+  //add academic
   openScrollableContent(longContent: any) {
 		this.modalService.open(longContent, { scrollable: true });
 	}
 
+  //update academic
+  openScrollableContent2(longContent: any, academic: Academic) {
+    this.academicEdit.yearName = academic.yearName;
+		this.modalService.open(longContent, { scrollable: true });
+	}
   academics: Academic[] = [];
   ngOnInit(): void {
     console.log(this.auth.getUserRole());
@@ -46,8 +53,16 @@ export class AcademicComponent {
       }
     })
   }
-  updateAcademic(id: number) {
-    console.log(id);
+  updateAcademic(yearName: string) {
+    let updateAcademic : Academic = {yearId: this.academicEdit.yearId, yearName: yearName}
+    this.academicService.UpdateAcademic(updateAcademic).subscribe((res) => {
+      if(res.success) {
+        this.academics = res.data;
+      }
+      else{
+        alert(res.message);
+      }
+    })
   }
   deleteAcademic(id: number) {
     console.log(id);

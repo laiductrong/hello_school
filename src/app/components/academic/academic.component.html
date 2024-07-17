@@ -16,7 +16,7 @@
         <td>{{academic.yearId}}</td>
         <td>{{academic.yearName}}</td>
         <td>
-          <button class="btn btn-primary" (click)="updateAcademic(academic.yearId)">Update</button>
+          <button class="btn btn-primary" (click)="openScrollableContent2(longContent2,academic)">Update</button>
           <button class="btn btn-danger" (click)="deleteAcademic(academic.yearId)">Delete</button>
         </td>
       </tr>
@@ -37,5 +37,22 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
     <button type="button" class="btn btn-outline-primary" (click)="modal.close('Close click'); addAcademic(yearAcademic.value)">Add</button>
+  </div>
+</ng-template>
+
+<!--update-->
+<ng-template #longContent2 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Add Academic</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">  
+      <input type="text" placeholder="Academic" #yearAcademicUpdate class="form-control" value="{{academicEdit.yearName}}">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-outline-primary" (click)="modal.close('Close click'); updateAcademic(yearAcademicUpdate.value)">Update</button>
   </div>
 </ng-template>
