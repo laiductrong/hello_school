@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AcademicService } from '../../services/academic.service';
-import { Academic } from '../../models/academic';
+import { Academic, AddAcademic } from '../../models/academic';
 import { AuthService } from '../../services/auth.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -14,8 +14,7 @@ export class AcademicComponent {
    *
    */
   constructor(private modalService: NgbModal,private academicService: AcademicService ,private auth: AuthService) {
-    
-    
+      
   }
 
   
@@ -36,8 +35,16 @@ export class AcademicComponent {
       }
     })
   }
-  addAcademic() {
-    console.log("Add");
+  addAcademic(yearAcademic : string) {
+    let addAcademic : AddAcademic = {yearName: yearAcademic}
+    this.academicService.AddAcademic(addAcademic).subscribe((res) => {
+      if(res.success) {
+        this.academics = res.data;
+      }
+      else{
+        alert(res.message);
+      }
+    })
   }
   updateAcademic(id: number) {
     console.log(id);

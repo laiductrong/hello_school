@@ -1,5 +1,4 @@
 <div class="container mt-4">
-  <button class="btn btn-success" (click)="addAcademic()">Add</button>
   <button class="btn btn-outline-success mb-2 me-2" (click)="openScrollableContent(longContent)">
     Add
   </button>
@@ -27,85 +26,16 @@
 
 <ng-template #longContent let-modal>
   <div class="modal-header">
-    <h4 class="modal-title">Modal title</h4>
+    <h4 class="modal-title">Add Academic</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
-    <p>
-      Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-      Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-    </p>
-    <p>
-      Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet
-      rutrum faucibus dolor auctor.
-    </p>
-    <p>
-      Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-      Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
-    </p>
-    <p>
-      Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-      Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-    </p>
-    <p>
-      Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet
-      rutrum faucibus dolor auctor.
-    </p>
-    <p>
-      Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-      Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
-    </p>
-    <p>
-      Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-      Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-    </p>
-    <p>
-      Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet
-      rutrum faucibus dolor auctor.
-    </p>
-    <p>
-      Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-      Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
-    </p>
-    <p>
-      Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-      Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-    </p>
-    <p>
-      Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet
-      rutrum faucibus dolor auctor.
-    </p>
-    <p>
-      Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-      Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
-    </p>
-    <p>
-      Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-      Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-    </p>
-    <p>
-      Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet
-      rutrum faucibus dolor auctor.
-    </p>
-    <p>
-      Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-      Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
-    </p>
-    <p>
-      Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-      Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-    </p>
-    <p>
-      Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet
-      rutrum faucibus dolor auctor.
-    </p>
-    <p>
-      Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-      Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
-    </p>
+    <div class="form-group">  
+      <input type="text" placeholder="Academic" #yearAcademic class="form-control">
+    </div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
-    <button type="button" class="btn btn-outline-primary">Add</button>
+    <button type="button" class="btn btn-outline-primary" (click)="modal.close('Close click'); addAcademic(yearAcademic.value)">Add</button>
   </div>
 </ng-template>

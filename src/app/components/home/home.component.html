@@ -1,14 +1,14 @@
 <div class="topnav" #myTopnav>
   <a class="nav-link" routerLink="">Home</a>
-  <a *ngIf="role === 'Teacher'|| role === 'Manager' " class="nav-link" routerLink="academic"
+  <a *ngIf="role === 'Teacher'|| role === 'Manager' || role === 'Admin' " class="nav-link" routerLink="academic"
     routerLinkActive="active">Academic</a>
   <a class="nav-link" routerLink="student" routerLinkActive="active">Student</a>
-  <a *ngIf="role === 'Teacher'|| role === 'Manager' " class="nav-link" routerLink="class"
+  <a *ngIf="role === 'Teacher'|| role === 'Manager' || role === 'Admin' " class="nav-link" routerLink="class"
     routerLinkActive="active">Class</a>
   <a class="nav-link" routerLink="grade" routerLinkActive="active">Grade</a>
-  <a *ngIf="role === 'Teacher'|| role === 'Manager' " class="nav-link" routerLink="subject"
+  <a *ngIf="role === 'Teacher'|| role === 'Manager' || role === 'Admin' " class="nav-link" routerLink="subject"
     routerLinkActive="active">Subject</a>
-  <a *ngIf="role === 'Manager' " class="nav-link" routerLink="manager-account" routerLinkActive="active">
+  <a *ngIf="role === 'Manager' || role === 'Admin' " class="nav-link" routerLink="manager-account" routerLinkActive="active">
     Manager Account</a>
   <a class="nav-link" routerLink="/account" routerLinkActive="active">Account</a>
   <a class="icon" (click)="toggleMenu()">

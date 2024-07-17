@@ -11,21 +11,21 @@ export const authGuard: CanActivateFn = (route, state) => {
     return false;
   }
   if (state.url.includes('/academic')) {
-    if (authService.getUserRole() === 'Teacher' || authService.getUserRole() === 'Manager') {
+    if (authService.getUserRole() === 'Teacher' || authService.getUserRole() === 'Manager' || authService.getUserRole() === 'Admin') {
       return true;
 
     }
     return false;
   }
   if (state.url.includes('/student')) {
-    if (authService.getUserRole() === 'Teacher' || authService.getUserRole() === 'Manager') {
+    if (authService.getUserRole() === 'Teacher' || authService.getUserRole() === 'Manager' || authService.getUserRole() === 'Admin') {
       return true;
 
     }
     return false;
   }
   if (state.url.includes('/class')) {
-    if (authService.getUserRole() === 'Teacher' || authService.getUserRole() === 'Manager') {
+    if (authService.getUserRole() === 'Teacher' || authService.getUserRole() === 'Manager' || authService.getUserRole() === 'Admin') {
       return true;
 
     }
