@@ -8,16 +8,16 @@
       <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Action</th>
+        <th *ngIf="roleSuccess === true">Action</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let academic of academics">
         <td>{{academic.yearId}}</td>
         <td>{{academic.yearName}}</td>
-        <td>
-          <button class="btn btn-primary" (click)="openScrollableContent2(longContent2,academic)">Update</button>
-          <button class="btn btn-danger" (click)="deleteAcademic(academic.yearId)">Delete</button>
+        <td *ngIf="roleSuccess === true">
+          <button class="btn btn-outline-primary" (click)="openScrollableContent2(longContent2,academic)">Update</button>
+          <button class="btn btn-outline-danger" (click)="deleteAcademic(academic.yearId)">Delete</button>
         </td>
       </tr>
     </tbody>

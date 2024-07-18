@@ -26,13 +26,19 @@ export class AcademicComponent {
 
   //update academic
   openScrollableContent2(longContent: any, academic: Academic) {
+    this.academicEdit.yearId = academic.yearId;
     this.academicEdit.yearName = academic.yearName;
 		this.modalService.open(longContent, { scrollable: true });
 	}
+  //check user role
+  public roleSuccess: boolean = false;
+  //list of academic
   academics: Academic[] = [];
   ngOnInit(): void {
-    console.log(this.auth.getUserRole());
     
+    if(this.auth.getUserRole() === 'Admin') {
+      this.roleSuccess = true;
+    }
     this.academicService.GetAY().subscribe((res) => {
       if(res.success) {
         this.academics = res.data;
@@ -55,8 +61,11 @@ export class AcademicComponent {
   }
   updateAcademic(yearName: string) {
     let updateAcademic : Academic = {yearId: this.academicEdit.yearId, yearName: yearName}
+    console.log(updateAcademic);
+    
     this.academicService.UpdateAcademic(updateAcademic).subscribe((res) => {
       if(res.success) {
+        alert(res.message);
         this.academics = res.data;
       }
       else{
@@ -65,6 +74,14 @@ export class AcademicComponent {
     })
   }
   deleteAcademic(id: number) {
-    console.log(id);
+    this.academicService.DeleteAcademic(id).subscribe((res) => {
+      if(res.success) {
+        alert(res.message);
+        this.academics = res.data;
+      }
+      else{
+        alert(res.message);
+      }
+    })
   }
 }
