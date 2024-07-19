@@ -19,12 +19,12 @@ export class AcademicComponent {
   academicEdit : Academic = {yearId: 0, yearName: ''};
 
   
-  //add academic
+  //form add academic
   openScrollableContent(longContent: any) {
 		this.modalService.open(longContent, { scrollable: true });
 	}
 
-  //update academic
+  //form update academic
   openScrollableContent2(longContent: any, academic: Academic) {
     this.academicEdit.yearId = academic.yearId;
     this.academicEdit.yearName = academic.yearName;

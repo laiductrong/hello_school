@@ -3,7 +3,14 @@ import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Observable } from 'rxjs/internal/Observable';
 import { serviceResponse } from '../models/serviceResponse';
+import { AddClass, Class, UpdateClass } from '../models/class';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + localStorage.getItem('account_school')
+  })
+};
 @Injectable({
   providedIn: 'root'
 })
@@ -15,26 +22,24 @@ export class ClassService {
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
-  private getHttpOptions() {
-    let token = '';
 
-    // Kiểm tra xem mã có đang chạy trong ngữ cảnh trình duyệt hay không
-    if (isPlatformBrowser(this.platformId)) {
-      token = localStorage.getItem('accoutLogin') || '';
-    } else {
-      console.log('localStorage không được định nghĩa trên máy chủ');
-      // Xử lý trường hợp localStorage không khả dụng
-    }
-
-    return {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      })
-    };
-  }
 
   public getClass(): Observable<serviceResponse> {
-    return this.http.get<serviceResponse>(`${this.url}/GetClass`, this.getHttpOptions());
+    return this.http.get<serviceResponse>(`${this.url}/GetClass`, httpOptions);
+  }
+  public AddClass(addClass: AddClass): Observable<serviceResponse> {
+    return this.http.post<serviceResponse>(this.url + "/AddClass", addClass, httpOptions)
+      .pipe(
+      );
+  }
+  public UpdateClass(updateClass: UpdateClass): Observable<serviceResponse> {
+    return this.http.post<serviceResponse>(this.url + "/UpdateClass", updateClass, httpOptions)
+      .pipe(
+      );
+  }
+  public DeleteClass(id: number): Observable<serviceResponse> {
+    return this.http.delete<serviceResponse>(this.url + "/DeleteClass?classID=" + id, httpOptions)
+      .pipe(
+      );
   }
 }

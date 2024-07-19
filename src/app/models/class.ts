@@ -4,5 +4,16 @@ export interface Class {
     yearId: number;
     yearName: string;
     teacherId: number;
-
+    teacherName: string;
+}
+export interface UpdateClass{
+  classId: number;
+  className: string;
+  yearId: number;
+  teacherId: number;
+}
+export interface AddClass{
+  className: string;
+  yearId: number;
+  teacherId: number;
 }

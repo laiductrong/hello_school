@@ -18,6 +18,7 @@ import { AuthService } from './services/auth.service';
 import { GradeComponent } from './components/grade/grade.component';
 import { SubjectComponent } from './components/subject/subject.component';
 import { ManagerAccountComponent } from './components/manager-account/manager-account.component';
+import { TeacherComponent } from './components/teacher/teacher.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ManagerAccountComponent } from './components/manager-account/manager-ac
     ClassComponent,
     GradeComponent,
     SubjectComponent,
-    ManagerAccountComponent
+    ManagerAccountComponent,
+    TeacherComponent
   ],
   imports: [
     BrowserModule,

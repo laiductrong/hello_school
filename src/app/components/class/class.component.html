@@ -1,24 +1,86 @@
 <div class="container mt-4">
+  <button class="btn btn-outline-success mb-2 me-2" (click)="openScrollableContent(longContent)">add </button>
     <h2>List of Students</h2>
     <table class="table table-striped">
       <thead>
         <tr>
           <th>ID</th>
           <th>Name</th>
-          <th>Year Id</th>
           <th>Year Name</th>
-          <th>Teacher Id</th>
+          <th>Teacher Name</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let class of classs">
           <td>{{class.classId}}</td>
           <td>{{class.className}}</td>
-          <td>{{class.yearId}}</td>
           <td>{{class.yearName}}</td>
-          <td>{{class.teacherId}}</td>
-          
+          <td>{{class.teacherName}}</td>
+          <td>
+            <button class="btn btn-outline-primary" (click)="openScrollableContent2(longContent2,class)">
+              Update
+            </button>
+            <button class="btn btn-outline-danger" (click)="deleteClass(class.classId)">Delete</button>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
+
+  <ng-template #longContent let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Add Class</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">  
+        <input type="text" placeholder="Class Name" #className class="form-control">
+      </div>
+      <div class="form-group">
+        <select class="form-select" aria-label="Default select example" #yearId>
+          <option selected value="academics[0]">{{academics[0].yearName}}</option>
+          <option *ngFor="let year of academics" value="{{year.yearId}}">{{year.yearName}}</option>
+
+        </select>
+      </div>
+      <div class="form-group">
+        <select class="form-select" aria-label="Default select example" #teacherId>
+          <option selected value="teachers[0]">{{teachers[0].name}}</option>
+          <option *ngFor="let teacher of teachers" value="{{teacher.teacherId}}">{{teacher.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
+      <button type="button" class="btn btn-outline-primary" (click)="modal.close('Close click');addClass(className.value,yearId.value, teacherId.value)">Add</button>
+    </div>
+  </ng-template>
+
+  <ng-template #longContent2 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Add Class</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">  
+        <input type="text" placeholder="Class" #classNameUpdate class="form-control" value="{{classEdit.className}}">
+      </div>
+      <div class="form-group">
+        <select class="form-select" aria-label="Default select example" #yearIdUpdate>
+          <option selected value="{{classEdit.yearId}}">{{classEdit.yearName}}</option>
+          <option *ngFor="let year of academics" value="{{year.yearId}}">{{year.yearName}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <select class="form-select" aria-label="Default select example" #teacherIdUpdate>
+          <option selected value="{{classEdit.teacherId}}">{{classEdit.teacherName}}</option>
+          <option *ngFor="let teacher of teachers" value="{{teacher.teacherId}}">{{teacher.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
+      <button type="button" class="btn btn-outline-primary" (click)="modal.close('Close click'); updateClass(classNameUpdate.value,yearIdUpdate.value, teacherIdUpdate.value)">Update</button>
+    </div>
+  </ng-template>
