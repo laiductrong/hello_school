@@ -37,10 +37,6 @@ export class ClassComponent {
         alert(res.message);
       }
     })
-    //list of academic
-
-    //list of teacher
-
   }
   //get list of academic
   getAcademic() {

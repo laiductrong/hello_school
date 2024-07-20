@@ -23,4 +23,9 @@ export class TeacherService {
       
     );
   }
+  public GetTeacher(): Observable<serviceResponse> {
+    return this.http.get<serviceResponse>(this.url + "/GetTeachers", httpOptions).pipe(
+      
+    );
+  }
 }

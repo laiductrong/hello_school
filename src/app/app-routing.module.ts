@@ -11,6 +11,7 @@ import { authGuard } from './guards/auth.guard';
 import { GradeComponent } from './components/grade/grade.component';
 import { SubjectComponent } from './components/subject/subject.component';
 import { ManagerAccountComponent } from './components/manager-account/manager-account.component';
+import { TeacherComponent } from './components/teacher/teacher.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent },
@@ -23,7 +24,8 @@ const routes: Routes = [
       { path: 'class', component: ClassComponent },
       { path: 'grade', component: GradeComponent },
       { path: 'subject', component: SubjectComponent },
-      { path: 'manager-account', component: ManagerAccountComponent }
+      { path: 'manager-account', component: ManagerAccountComponent },
+      { path: 'teacher', component: TeacherComponent }
   ] },
   { path: '**', component: NotFoundComponent },
 ];

@@ -39,17 +39,17 @@
       </div>
       <div class="form-group">
         <select class="form-select" aria-label="Default select example" #yearId>
-          <option selected value="academics[0]">{{academics[0].yearName}}</option>
+          <option *ngIf="academics && academics.length > 0" selected value="{{academics[0].yearId}}">{{academics[0].yearName}}</option>
           <option *ngFor="let year of academics" value="{{year.yearId}}">{{year.yearName}}</option>
-
         </select>
       </div>
       <div class="form-group">
         <select class="form-select" aria-label="Default select example" #teacherId>
-          <option selected value="teachers[0]">{{teachers[0].name}}</option>
+          <option *ngIf="teachers && teachers.length > 0" selected value="{{teachers[0].teacherId}}">{{teachers[0].name}}</option>
           <option *ngFor="let teacher of teachers" value="{{teacher.teacherId}}">{{teacher.name}}</option>
         </select>
       </div>
+      
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
