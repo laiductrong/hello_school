@@ -16,7 +16,8 @@ const httpOptions = {
 export class SubjectService {
 
   constructor( private http: HttpClient) { }
+  private url = "https://localhost:7084/api/Subject";
 
   public GetSubject(): Observable<serviceResponse> {
-    return this.http.get<serviceResponse>("https://localhost:7084/api/GetSubjects", httpOptions).pipe();}
+    return this.http.get<serviceResponse>(this.url+"/GetSubjects", httpOptions).pipe();}
 }

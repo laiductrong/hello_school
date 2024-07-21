@@ -6,14 +6,18 @@ import { AccountComponent } from './components/account/account.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MatTabsModule} from '@angular/material/tabs';
+import { FormsModule } from '@angular/forms';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { StudentComponent } from './components/student/student.component';
 import { AcademicComponent } from './components/academic/academic.component';
 import { IndexComponent } from './index/index.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ClassComponent } from './components/class/class.component';
-import { JwtModule } from '@auth0/angular-jwt'; 
+import { JwtModule } from '@auth0/angular-jwt';
 import { AuthService } from './services/auth.service';
 import { GradeComponent } from './components/grade/grade.component';
 import { SubjectComponent } from './components/subject/subject.component';
@@ -40,7 +44,11 @@ import { TeacherComponent } from './components/teacher/teacher.component';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    FormsModule,
     MatTabsModule, // Tab
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule ,
     HttpClientModule,
 
     // JWT
@@ -53,7 +61,7 @@ import { TeacherComponent } from './components/teacher/teacher.component';
         disallowedRoutes: [] // Thay đổi theo route bị từ chối
       }
     })
-    
+
   ],
   providers: [
     provideClientHydration(),

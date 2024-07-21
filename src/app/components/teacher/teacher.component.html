@@ -2,100 +2,111 @@
   <button class="btn btn-outline-success mb-2 me-2" (click)="openScrollableContent(longContent)">
     Add
   </button>
-    <h2>List of Students</h2>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Student ID</th>
-          <th>Name</th>
-          <th>Birth Date</th>
-          <th>Address</th>
-          <th>Phone Number</th>
-          <th>Email</th>
-          <th>Class Name</th>
-          <td>Action</td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let teacher of teachers">
-          <td>{{teacher.teacherId}}</td>
-          <td>{{teacher.name}}</td>
-          <td>{{teacher.birthDate}}</td>
-          <td>{{teacher.address}}</td>
-          <td>{{teacher.phoneNumber}}</td>
-          <td>{{teacher.email}}</td>
-          <td>{{teacher.subjectName}}</td>
-          <td>
-            <button class="btn btn-outline-primary" (click)="openScrollableContent2(longContent2,teacher)">
-              Update
-            </button>
-            <button class="btn btn-outline-danger" (click)="deleteTeacher(teacher.teacherId)">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <h2>List of Students</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Student ID</th>
+        <th>Name</th>
+        <th>Birth Date</th>
+        <th>Address</th>
+        <th>Phone Number</th>
+        <th>Email</th>
+        <th>Class Name</th>
+        <td>Action</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let teacher of teachers">
+        <td>{{teacher.teacherId}}</td>
+        <td>{{teacher.name}}</td>
+        <td>{{teacher.birthDate}}</td>
+        <td>{{teacher.address}}</td>
+        <td>{{teacher.phoneNumber}}</td>
+        <td>{{teacher.email}}</td>
+        <td>{{teacher.subjectName}}</td>
+        <td>
+          <button class="btn btn-outline-primary" (click)="openScrollableContent2(longContent2,teacher)">
+            Update
+          </button>
+          <button class="btn btn-outline-danger" (click)="deleteTeacher(teacher.teacherId)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #longContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Add Teacher</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <input type="text" placeholder="Name" #nameTeacher class="form-control">
+    </div>
+    <div class="form-group">
+      <input type="date" placeholder="Birth Date" #birthDateTeacher class="form-control">
+    </div>
+    <div class="form-group">
+      <input type="text" placeholder="Address" #addressTeacher class="form-control">
+    </div>
+    <div class="form-group">
+      <input type="text" placeholder="Phone Number" #phoneNumberTeacher class="form-control">
+    </div>
+    <div class="form-group">
+      <input type="email" placeholder="Email" #emailTeacher class="form-control">
+    </div>
+    <div class="form-group">
+      <select class="form-select" aria-label="Default select example" #subjectId>
+        <option *ngIf="subjects && subjects.length > 0" selected value="{{subjects[0].subjectId}}">{{subjects[0].name}}
+        </option>
+        <option *ngFor="let subject of subjects" value="{{subject.subjectId}}">{{subject.name}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-outline-success"
+      (click)="modal.close('Close click');addTeacher(nameTeacher.value, birthDateTeacher.value, addressTeacher.value, phoneNumberTeacher.value, emailTeacher.value, subjectId.value)">Add</button>
+  </div>
+</ng-template>
 
-  <ng-template #longContent let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title">Add Teacher</h4>
-      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+<!--update-->
+<ng-template #longContent2 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Add Teacher</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <input type="text" placeholder="Name" #nameTeacherUpdate class="form-control" value="{{teacherEdit.name}}">
     </div>
-    <div class="modal-body">
-      <div class="form-group">  
-        <input type="text" placeholder="Name" #nameTeacher class="form-control">
-      </div>
-      <div class="form-group">
-        <input type="text" placeholder="Birth Date" #birthDateTeacher class="form-control">
-      </div>
-      <div class="form-group">
-        <input type="text" placeholder="Address" #addressTeacher class="form-control">
-      </div>
-      <div class="form-group">
-        <input type="text" placeholder="Phone Number" #phoneNumberTeacher class="form-control">
-      </div>
-      <div class="form-group">
-        <input type="text" placeholder="Email" #emailTeacher class="form-control">
-      </div>
-      <div class="form-group">
-        <input type="text" placeholder="Subject Name" #subjectNameTeacher class="form-control">
-      </div>
+    <div class="form-group">
+      <input type="date" placeholder="Birth Date" #birthDateTeacherUpdate class="form-control"
+        value="{{teacherEdit.birthDate}}">
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Close click')">Close</button>
-      <button type="button" class="btn btn-outline-success" (click)="modal.close('Close click'); addTeacher(nameTeacher.value,birthDateTeacher.value,addressTeacher.value,phoneNumberTeacher.value,emailTeacher.value,subjectNameTeacher.value)">Add</button>
+    <div class="form-group">
+      <input type="text" placeholder="Address" #addressTeacherUpdate class="form-control"
+        value="{{teacherEdit.address}}">
     </div>
-  </ng-template>
-
-  <!--update-->
-  <ng-template #longContent2 let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title">Add Teacher</h4>
-      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    <div class="form-group">
+      <input type="text" placeholder="Phone Number" #phoneNumberTeacherUpdate class="form-control"
+        value="{{teacherEdit.phoneNumber}}">
     </div>
-    <div class="modal-body">
-      <div class="form-group">  
-        <input type="text" placeholder="Name" #nameTeacherUpdate class="form-control" value="{{teacherEdit.name}}">
-      </div>
-      <div class="form-group">
-        <input type="text" placeholder="Birth Date" #birthDateTeacherUpdate class="form-control" value="{{teacherEdit.birthDate}}">
-      </div>
-      <div class="form-group">
-        <input type="text" placeholder="Address" #addressTeacherUpdate class="form-control" value="{{teacherEdit.address}}">
-      </div>
-      <div class="form-group">
-        <input type="text" placeholder="Phone Number" #phoneNumberTeacherUpdate class="form-control" value="{{teacherEdit.phoneNumber}}">
-      </div>
-      <div class="form-group">
-        <input type="text" placeholder="Email" #emailTeacherUpdate class="form-control" value="{{teacherEdit.email}}">
-      </div>
-      <div class="form-group">
-        <input type="text" placeholder="Subject Name" #subjectNameTeacherUpdate class="form-control" value="{{teacherEdit.subjectName}}">
-      </div>
+    <div class="form-group">
+      <input type="email" placeholder="Email" #emailTeacherUpdate class="form-control" value="{{teacherEdit.email}}">
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Close click')">Close</button>
-      <button type="button" class="btn btn-outline-primary" (click)="modal.close('Close click')">Update</button>
+    <div class="form-group">
+      <select class="form-select" aria-label="Default select example" #subjectIdUpdate>
+        <option selected value="{{teacherEdit.subjectId}}">{{teacherEdit.subjectName}}</option>
+        <option *ngFor="let subject of subjects" value="{{subject.subjectId}}">{{subject.name}}</option>
+      </select>
     </div>
-  </ng-template>
-  
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-outline-primary"
+      (click)="modal.close('Close click'); updateTeacher(nameTeacherUpdate.value, birthDateTeacherUpdate.value, addressTeacherUpdate.value, phoneNumberTeacherUpdate.value, emailTeacherUpdate.value, subjectIdUpdate.value)">Update</button>
+  </div>
+</ng-template>

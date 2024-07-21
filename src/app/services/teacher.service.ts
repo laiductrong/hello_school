@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { serviceResponse } from '../models/serviceResponse';
 import { Observable } from 'rxjs';
+import { AddTeacher, Teacher } from '../models/teacher';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -27,5 +28,16 @@ export class TeacherService {
     return this.http.get<serviceResponse>(this.url + "/GetTeachers", httpOptions).pipe(
       
     );
+  }
+  public AddTeacher(teacher: AddTeacher): Observable<serviceResponse> {
+    return this.http.post<serviceResponse>(this.url + "/AddTeacher", teacher, httpOptions).pipe(
+      
+    );
+  }
+  public UpdateTeacher(teacher: Teacher): Observable<serviceResponse> { 
+    return this.http.post<serviceResponse>(this.url + "/UpdateTeacher", teacher, httpOptions).pipe();
+  }
+  public DeleteTeacher(teacherId: number): Observable<serviceResponse> {
+    return this.http.delete<serviceResponse>(this.url + "/DeleteTeacher/" + teacherId, httpOptions).pipe();
   }
 }
