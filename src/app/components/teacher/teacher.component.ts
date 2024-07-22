@@ -68,26 +68,26 @@ export class TeacherComponent {
     let addTeacher : AddTeacher = {name: nameTeacher, birthDate: birthDateTeacher, address: addressTeacher, phoneNumber: phoneNumberTeacher, email: emailTeacher, subjectId: subjectId}
     console.log(addTeacher);
     
-    // this.teacherService.AddTeacher(addTeacher).subscribe((res) => {
-    //   if(res.success) {
-    //     this.teachers = res.data;
-    //   }
-    //   else {
-    //     alert(res.message);
-    //   }
-    // })
+    this.teacherService.AddTeacher(addTeacher).subscribe((res) => {
+      if(res.success) {
+        this.teachers = res.data;
+      }
+      else {
+        alert(res.message);
+      }
+    })
   }
 
   //delete teacher
   deleteTeacher(teacherId: number) {
-    // this.teacherService.DeleteTeacher(teacherId).subscribe((res) => {
-    //   if(res.success) {
-    //     this.teachers = res.data;
-    //   }
-    //   else {
-    //     alert(res.message);
-    //   }
-    // })
+    this.teacherService.DeleteTeacher(teacherId).subscribe((res) => {
+      if(res.success) {
+        this.teachers = res.data;
+      }
+      else {
+        alert(res.message);
+      }
+    })
   }
   //update teacher
   teacherEdit: Teacher = {
@@ -103,14 +103,14 @@ export class TeacherComponent {
   updateTeacher(nameTeacher: string, birthDateTeacher: string, addressTeacher: string, phoneNumberTeacher: string, emailTeacher: string, subjectId: any) {
     let updateTeacher : UpdateTeacher = {teacherId: this.teacherEdit.teacherId,name: nameTeacher, birthDate: birthDateTeacher, address: addressTeacher, phoneNumber: phoneNumberTeacher, email: emailTeacher, subjectId: subjectId};
     console.log(updateTeacher);
-    // this.teacherService.UpdateTeacher(updateTeacher).subscribe((res) => {
-    //   if(res.success) {
-    //     this.teachers = res.data;
-    //   }
-    //   else {
-    //     alert(res.message);
-    //   }
-    // })
+    this.teacherService.UpdateTeacher(updateTeacher).subscribe((res) => {
+      if(res.success) {
+        this.teachers = res.data;
+      }
+      else {
+        alert(res.message);
+      }
+    })
   }
   getSubjects() {
     this.subjectService.GetSubject().subscribe((res) => {
