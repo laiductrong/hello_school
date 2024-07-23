@@ -1,4 +1,7 @@
 <div class="container mt-4">
+  <button class="btn btn-outline-success mb-2 me-2" (click)="openScrollableContent(longContent)">
+    Add
+  </button>
     <h2>List of Students</h2>
     <table class="table table-striped">
       <thead>
@@ -21,8 +24,83 @@
           <td>{{student.phoneNumber}}</td>
           <td>{{student.email}}</td>
           <td>{{student.className}}</td>
+          <td>
+            <button class="btn btn-outline-primary" (click)="openScrollableContent2(longContent2,student)">
+              Update
+            </button>
+            <button class="btn btn-outline-danger" (click)="deleteStudent(student.studentId)">Delete</button>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
-  
+  <ng-template #longContent let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Add Student</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <input type="text" placeholder="Name" #nameStudent class="form-control">
+      </div>
+      <div class="form-group">
+        <input type="date" placeholder="Birth Date" #birthDateStudent class="form-control">
+      </div>
+      <div class="form-group">
+        <input type="text" placeholder="Address" #addressStudent class="form-control">
+      </div>
+      <div class="form-group">
+        <input type="text" placeholder="Phone Number" #phoneNumberStudent class="form-control">
+      </div>
+      <div class="form-group">
+        <input type="email" placeholder="Email" #emailStudent class="form-control">
+      </div>
+      <div class="form-group">
+        <select class="form-select" aria-label="Default select example" #classId>
+          <option selected>Open this select menu</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Close click')">Close</button>
+      <button type="button" class="btn btn-outline-success" (click)="modal.close('Close click');AddStudent(nameStudent.value, birthDateStudent.value, addressStudent.value, phoneNumberStudent.value, emailStudent.value, classId.value)">Add</button>
+    </div>
+  </ng-template>
+  <ng-template #longContent2 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Update Student</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <input type="text" placeholder="Name" #nameStudent class="form-control">
+      </div>
+      <div class="form-group">
+        <input type="date" placeholder="Birth Date" #birthDateStudent class="form-control">
+      </div>
+      <div class="form-group">
+        <input type="text" placeholder="Address" #addressStudent class="form-control">
+      </div>
+      <div class="form-group">
+        <input type="text" placeholder="Phone Number" #phoneNumberStudent class="form-control">
+      </div>
+      <div class="form-group">
+        <input type="email" placeholder="Email" #emailStudent class="form-control">
+      </div>
+      <div class="form-group">
+        <select class="form-select" aria-label="Default select example" #classId>
+          <option selected>Open this select menu</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Close click')">Close</button>
+      <button type="button" class="btn btn-outline-success" (click)="modal.close('Close click');UpdateStudent(nameStudent.value, birthDateStudent.value, addressStudent.value, phoneNumberStudent.value, emailStudent.value, classId.value)">Update</button>
+    </div>
+  </ng-template>

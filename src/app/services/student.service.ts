@@ -2,9 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { map, Observable, throwError } from 'rxjs';
 import { serviceResponse } from '../models/serviceResponse';
+import { AddStudent, Student, UpdateStudent } from '../models/student';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + localStorage.getItem('account_school')
+  })
 };
 @Injectable({
   providedIn: 'root'
@@ -16,5 +20,14 @@ export class StudentService {
 
   public getUser(): Observable<serviceResponse> {
     return this.http.get<serviceResponse>(this.url + "/GetStudents", httpOptions);
+  }
+  public AddStudent(student: AddStudent): Observable<serviceResponse> {
+    return this.http.post<serviceResponse>(this.url + "/AddStudent", student, httpOptions);
+  }
+  public UpdateStudent(student: UpdateStudent): Observable<serviceResponse> {
+    return this.http.put<serviceResponse>(this.url + "/UpdateStudent", student, httpOptions);
+  }
+  public DeleteStudent(studentId: number): Observable<serviceResponse> {
+    return this.http.delete<serviceResponse>(this.url + "/DeleteStudent/" + studentId, httpOptions);
   }
 }
