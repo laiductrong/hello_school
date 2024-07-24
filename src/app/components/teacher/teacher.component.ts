@@ -60,7 +60,7 @@ export class TeacherComponent {
     const year = date.getFullYear();
     const month = ('0' + (date.getMonth() + 1)).slice(-2);
     const day = ('0' + date.getDate()).slice(-2);
-    return `${day}-${month}-${year}`;
+    return `${year}-${month}-${day}`;
   }
 
   //add teacher
@@ -102,7 +102,6 @@ export class TeacherComponent {
   }
   updateTeacher(nameTeacher: string, birthDateTeacher: string, addressTeacher: string, phoneNumberTeacher: string, emailTeacher: string, subjectId: any) {
     let updateTeacher : UpdateTeacher = {teacherId: this.teacherEdit.teacherId,name: nameTeacher, birthDate: birthDateTeacher, address: addressTeacher, phoneNumber: phoneNumberTeacher, email: emailTeacher, subjectId: subjectId};
-    console.log(updateTeacher);
     this.teacherService.UpdateTeacher(updateTeacher).subscribe((res) => {
       if(res.success) {
         this.teachers = res.data;

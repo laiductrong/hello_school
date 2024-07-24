@@ -25,7 +25,8 @@ export class StudentService {
     return this.http.post<serviceResponse>(this.url + "/AddStudent", student, httpOptions);
   }
   public UpdateStudent(student: UpdateStudent): Observable<serviceResponse> {
-    return this.http.put<serviceResponse>(this.url + "/UpdateStudent", student, httpOptions);
+    //https://localhost:7084/api/Student/UpdateStudent
+    return this.http.put<serviceResponse>(this.url + "/UpdateStudent", student, httpOptions).pipe();
   }
   public DeleteStudent(studentId: number): Observable<serviceResponse> {
     return this.http.delete<serviceResponse>(this.url + "/DeleteStudent/" + studentId, httpOptions);
