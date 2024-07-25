@@ -12,6 +12,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { StudentComponent } from './components/student/student.component';
 import { AcademicComponent } from './components/academic/academic.component';
 import { IndexComponent } from './index/index.component';
@@ -50,6 +51,7 @@ import { TeacherComponent } from './components/teacher/teacher.component';
     MatNativeDateModule,
     MatInputModule ,
     HttpClientModule,
+    NgxPaginationModule,
 
     // JWT
     JwtModule.forRoot({

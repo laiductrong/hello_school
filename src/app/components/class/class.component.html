@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let class of classs">
+        <tr *ngFor="let class of classs | paginate: { itemsPerPage: pageSize, currentPage: page }">
           <td>{{class.classId}}</td>
           <td>{{class.className}}</td>
           <td>{{class.yearName}}</td>
@@ -26,6 +26,7 @@
         </tr>
       </tbody>
     </table>
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
   </div>
 
   <ng-template #longContent let-modal>

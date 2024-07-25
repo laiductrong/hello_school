@@ -22,6 +22,10 @@ export class TeacherComponent {
     private subjectService: SubjectService) {
     
   }  
+  //Pagination
+  page: number = 1;
+  pageSize : number = 5;
+  
   teachers: Teacher[] = [];
   subjects: Subject[] = [];
   ngOnInit(): void {

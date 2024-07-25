@@ -25,6 +25,10 @@ export class ClassComponent {
 
   }
 
+  //Pagination
+  page: number = 1;
+  pageSize : number = 5;
+  
   classs: Class[] = [];
   academics: Academic[] = [];
   teachers: Teacher[] = [];

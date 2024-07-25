@@ -26,4 +26,7 @@ export class GradeComponent {
       }
   }
   )}
+  //pagination
+  page: number = 1;
+  pageSize : number = 5;
 }

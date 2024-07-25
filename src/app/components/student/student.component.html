@@ -16,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let student of students">
+        <tr *ngFor="let student of students | paginate: { itemsPerPage: pageSize, currentPage: page }" >
           <td>{{student.studentId}}</td>
           <td>{{student.name}}</td>
           <td>{{student.birthDate}}</td>
@@ -33,6 +33,7 @@
         </tr>
       </tbody>
     </table>
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
   </div>
   <ng-template #longContent let-modal>
     <div class="modal-header">

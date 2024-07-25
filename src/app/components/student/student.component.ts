@@ -32,6 +32,9 @@ export class StudentComponent {
     })
   }
 
+  //Pagination
+  page: number = 1;
+  pageSize : number = 5;
   //get class
   classes: Class[] = [];
   getClass() {

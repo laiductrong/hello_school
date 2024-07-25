@@ -32,6 +32,9 @@ export class AcademicComponent {
 	}
   //check user role
   public roleSuccess: boolean = false;
+  //pagination
+  page: number = 1;
+  pageSize : number = 5;
   //list of academic
   academics: Academic[] = [];
   ngOnInit(): void {
