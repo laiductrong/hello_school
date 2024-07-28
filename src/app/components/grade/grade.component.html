@@ -1,15 +1,16 @@
 <div class="container mt-4">
+  <button class="btn btn-outline-success mb-2 me-2" (click)="openScrollableContent(longContent)">Add Grade</button>
     <h2>List of Grades</h2>
     <table class="table table-striped">
       <thead>
         <tr>
           <th>Grade ID</th>
           <th>Student ID</th>
-          <th>Student Name</th>
-          <th>Teacher ID</th>
+          <th>Student Name</th>         
           <th>Teacher Name</th>
           <th>Subject Name</th>
           <th>Score</th>
+          <th>Acction</th>
         </tr>
       </thead>
       <tbody>
@@ -17,12 +18,51 @@
           <td>{{grade.gradeId}}</td>
           <td>{{grade.studentId}}</td>
           <td>{{grade.studentName}}</td>
-          <td>{{grade.teacherId}}</td>
           <td>{{grade.teacherName}}</td>
           <td>{{grade.subjectName}}</td>
           <td>{{grade.score}}</td>
+          <td>
+            <!-- <button class="btn btn-outline-primary" (click)="openScrollableContent2(longContent2,grade)">
+              Update
+            </button>
+            <button class="btn btn-outline-danger" (click)="deleteGrade(grade.gradeId)">Delete</button> -->
+          </td>
         </tr>
       </tbody>
     </table>
     <pagination-controls (pageChange)="page = $event"></pagination-controls>
 </div>
+<ng-template #longContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Add Grade</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="academicYear">Academic Year</label>
+      <select class="form-select" aria-label="Select Academic Year" (change)="onAcademicYearChange($event)">
+        <option *ngFor="let year of academicYears" [value]="year.yearId">{{year.yearName}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="class">Class</label>
+      <select class="form-select" aria-label="Select Class" (change)="onClassChange($event)">
+        <option *ngFor="let cls of classes" [value]="cls.classId">{{cls.className}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="student">Student</label>
+      <select class="form-select" aria-label="Select Student" #studentName>
+        <option *ngFor="let student of students" [value]="student.studentId">{{student.studentId}} - {{student.name}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="score">Score</label>
+      <input type="text" placeholder="Score" #score class="form-control">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <!-- <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-outline-success" (click)="modal.close('Close click');addGrade(studentId.value,studentName.value,teacherName.value,subjectName.value,score.value)">Add</button> -->
+  </div>
+</ng-template>

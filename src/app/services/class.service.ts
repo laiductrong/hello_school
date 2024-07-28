@@ -42,4 +42,7 @@ export class ClassService {
       .pipe(
       );
   }
+  public GetClassByAY(id: any): Observable<serviceResponse> {
+    return this.http.get<serviceResponse>(this.url + "/GetClassByYear?yearId=" + id, httpOptions).pipe();
+  }
 }

@@ -18,7 +18,7 @@ export class StudentService {
   constructor(private http: HttpClient) { }
   private url = "https://localhost:7084/api/Student";
 
-  public getUser(): Observable<serviceResponse> {
+  public getStudents(): Observable<serviceResponse> {
     return this.http.get<serviceResponse>(this.url + "/GetStudents", httpOptions);
   }
   public AddStudent(student: AddStudent): Observable<serviceResponse> {
@@ -30,5 +30,8 @@ export class StudentService {
   }
   public DeleteStudent(studentId: number): Observable<serviceResponse> {
     return this.http.delete<serviceResponse>(this.url + "/DeleteStudent/" + studentId, httpOptions);
+  }
+  public GetStudentByClass(classId: number): Observable<serviceResponse> {
+    return this.http.get<serviceResponse>(this.url + "/GetStudentByClass/" + classId, httpOptions);
   }
 }

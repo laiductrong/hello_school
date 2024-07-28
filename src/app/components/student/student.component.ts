@@ -22,7 +22,7 @@ export class StudentComponent {
   }
 
   ngOnInit(): void {
-    this.studentService.getUser().subscribe((res) => {
+    this.studentService.getStudents().subscribe((res) => {
       if(res.success) {
         this.students = res.data;
       }
