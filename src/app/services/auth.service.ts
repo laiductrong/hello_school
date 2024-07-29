@@ -31,6 +31,14 @@ export class AuthService {
     }
     return null;
   }
+  getUserId(): string | null {
+    const token = localStorage.getItem('account_school');
+    if (token && !this.jwtHelper.isTokenExpired(token)) {
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      return decodedToken['id'] || null;
+    }
+    return null;
+  }
 
   isAuthenticated(): boolean {
     // Kiểm tra nếu người dùng đã xác thực hay chưa

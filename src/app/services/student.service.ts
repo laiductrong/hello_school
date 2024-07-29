@@ -32,6 +32,6 @@ export class StudentService {
     return this.http.delete<serviceResponse>(this.url + "/DeleteStudent/" + studentId, httpOptions);
   }
   public GetStudentByClass(classId: number): Observable<serviceResponse> {
-    return this.http.get<serviceResponse>(this.url + "/GetStudentByClass/" + classId, httpOptions);
+    return this.http.get<serviceResponse>(this.url + "/GetStudentsByClass/" + classId, httpOptions);
   }
 }

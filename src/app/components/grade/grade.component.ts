@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Grade } from '../../models/grade';
+import { AddGrade, Grade } from '../../models/grade';
 import { GradeService } from '../../services/grade.service';
 import { Student } from '../../models/student';
 import { Subject } from '../../models/subject';
@@ -10,6 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Academic } from '../../models/academic';
 import { Class } from '../../models/class';
 import { ClassService } from '../../services/class.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-grade',
@@ -24,17 +25,18 @@ export class GradeComponent {
     private studentService: StudentService,
     private academicService: AcademicService,
     private classService: ClassService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private auth: AuthService
   ) {
   }
   //form add grade
   openScrollableContent(longContent: any) {
     this.getAcademicYear();
-    // this.getStudents();
-    // this.getSubjects();
     this.modalService.open(longContent, { scrollable: true });
   }
+  idTeacher: any;
   ngOnInit(): void {
+    this.idTeacher = this.auth.getUserId();
     this.getGradents();
   }
   //pagination
@@ -48,8 +50,6 @@ export class GradeComponent {
     this.gradeService.GetGrade().subscribe((res) => {
       if (res.success) {
         this.grades = res.data;
-        console.log(this.grades);
-        console.log(res.data);
       }
       else {
         console.log(res.message);
@@ -91,7 +91,7 @@ export class GradeComponent {
   getClassByAY(ayId: any) {
     this.classService.GetClassByAY(ayId).subscribe((res) => {
       if (res.success) {
-        this.classes = res.data;
+        this.classes = res.data;        
       }
       else {
         console.log(res.message);
@@ -109,9 +109,42 @@ export class GradeComponent {
     })
   }
   onAcademicYearChange(e: any) {
-    this.getClassByAY(e.target.value);
+    this.classes = [];
+    this.students = [];
+    const ayId = parseInt(e.target.value, 10);
+    this.idYear = ayId;
+    this.getClassByAY(ayId);
   }
   onClassChange(e: any) {
-    //this.getStudentByClass(classId);
+    this.students = [];
+    const cId = parseInt(e.target.value, 10);
+    this.getStudentByClass(cId);
+  }
+
+
+
+  idYear: any;
+  addGrade(idStudent: any, score: any) {
+    const grade: AddGrade = {
+      studentId: idStudent,
+      teacherId: this.idTeacher,
+      score: score,
+      yearId: this.idYear
+    }
+    if(!score || !this.idYear || !idStudent || !this.idTeacher) {
+      alert("Please fill in all fields or login again");
+      return;
+    }
+    console.log(this.idYear);
+    
+    this.gradeService.AddGrade(grade).subscribe((res) => {
+      if (res.success) {
+        
+        this.grades = res.data;
+      }
+      else {
+        alert(res.message);
+      }
+    })
   }
 }

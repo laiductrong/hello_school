@@ -41,28 +41,32 @@
     <div class="form-group">
       <label for="academicYear">Academic Year</label>
       <select class="form-select" aria-label="Select Academic Year" (change)="onAcademicYearChange($event)">
+        <option value="" disabled selected>Select Academic Year</option>
         <option *ngFor="let year of academicYears" [value]="year.yearId">{{year.yearName}}</option>
       </select>
     </div>
     <div class="form-group">
       <label for="class">Class</label>
       <select class="form-select" aria-label="Select Class" (change)="onClassChange($event)">
+        <option value="" disabled selected>Select Class</option>
         <option *ngFor="let cls of classes" [value]="cls.classId">{{cls.className}}</option>
       </select>
     </div>
     <div class="form-group">
       <label for="student">Student</label>
       <select class="form-select" aria-label="Select Student" #studentName>
+        <option value="" disabled selected>Select Student</option>
         <option *ngFor="let student of students" [value]="student.studentId">{{student.studentId}} - {{student.name}}</option>
       </select>
     </div>
     <div class="form-group">
       <label for="score">Score</label>
-      <input type="text" placeholder="Score" #score class="form-control">
+      <input type="number" class="form-control" id="score" placeholder="Score" #score>
     </div>
   </div>
+  
   <div class="modal-footer">
-    <!-- <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Close click')">Close</button>
-    <button type="button" class="btn btn-outline-success" (click)="modal.close('Close click');addGrade(studentId.value,studentName.value,teacherName.value,subjectName.value,score.value)">Add</button> -->
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-outline-success" (click)="modal.close('Close click');addGrade(studentName.value, score.value)">Add</button>
   </div>
 </ng-template>

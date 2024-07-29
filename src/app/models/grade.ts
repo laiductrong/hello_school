@@ -7,3 +7,9 @@ export interface Grade {
     subjectName: string;
     score: number;
 }
+export interface AddGrade {
+    studentId: number;
+    teacherId: number;
+    score: number;
+    yearId: number;
+}
