@@ -28,4 +28,9 @@ export class GradeService {
       // catchError(this.handleError)
     );
   }
+  public DeleteGrade(gradeId: number): Observable<serviceResponse> {
+    return this.http.delete<serviceResponse>(this.url + "/Delete/" + gradeId, httpOptions).pipe(
+      // catchError(this.handleError)
+    );
+  }
 }

@@ -139,7 +139,7 @@ export class GradeComponent {
     
     this.gradeService.AddGrade(grade).subscribe((res) => {
       if (res.success) {
-        
+        alert(res.message);
         this.grades = res.data;
       }
       else {
@@ -147,4 +147,22 @@ export class GradeComponent {
       }
     })
   }
+
+  deleteGrade(id: number, teacherId: number) {
+    if(!id || !teacherId || !this.idTeacher || (this.idTeacher != teacherId)) {
+      alert("You can't delete this grade");
+      return;
+    }
+    this.gradeService.DeleteGrade(id).subscribe((res) => {
+      if (res.success) {
+        alert(res.message);
+        this.grades = res.data;
+      }
+      else {
+        alert(res.message);
+      }
+    })
+  }
+
+
 }
