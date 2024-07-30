@@ -22,9 +22,9 @@
           <td>{{grade.subjectName}}</td>
           <td>{{grade.score}}</td>
           <td>
-            <!-- <button class="btn btn-outline-primary" (click)="openScrollableContent2(longContent2,grade)">
+            <button class="btn btn-outline-primary" (click)="openScrollableContent2(longContent2,grade)">
               Update
-            </button>-->
+            </button>
             <button class="btn btn-outline-danger" (click)="deleteGrade(grade.gradeId,grade.teacherId)">Delete</button> 
           </td>
         </tr>
@@ -68,5 +68,22 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Close click')">Close</button>
     <button type="button" class="btn btn-outline-success" (click)="modal.close('Close click');addGrade(studentName.value, score.value)">Add</button>
+  </div>
+</ng-template>
+<ng-template #longContent2 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Update Grade</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="score">Score</label>
+      <input type="number" class="form-control" id="score" placeholder="Score" #score>
+    </div>
+  </div>
+  
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-outline-success" (click)="modal.close('Close click');updateGrade(score.value)">Update</button>
   </div>
 </ng-template>

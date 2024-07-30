@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AddGrade, Grade } from '../../models/grade';
+import { AddGrade, Grade, UpdateGrade } from '../../models/grade';
 import { GradeService } from '../../services/grade.service';
 import { Student } from '../../models/student';
 import { Subject } from '../../models/subject';
@@ -32,6 +32,23 @@ export class GradeComponent {
   //form add grade
   openScrollableContent(longContent: any) {
     this.getAcademicYear();
+    this.modalService.open(longContent, { scrollable: true });
+  }
+  //value update
+  gradeUpdate: UpdateGrade = {
+    gradeId: 0,
+    studentId: 0,
+    teacherId: 0,
+    score: 0,
+    yearId: 0
+  }
+  //form update grade
+  openScrollableContent2(longContent: any, grade: Grade) {
+    this.gradeUpdate.gradeId = grade.gradeId;
+    this.gradeUpdate.studentId = grade.studentId;
+    this.gradeUpdate.teacherId = grade.teacherId;
+    this.gradeUpdate.score = grade.score;
+    this.gradeUpdate.yearId = grade.yearId;
     this.modalService.open(longContent, { scrollable: true });
   }
   idTeacher: any;
@@ -164,5 +181,37 @@ export class GradeComponent {
     })
   }
 
+  updateGrade(scoreInput: any) {
+    const score = parseInt(scoreInput, 10);
+    if(!score || (score < 0) || (score > 100)) {
+      alert("Please input score between 0 and 100");
+      return;
+    }
+    this.gradeUpdate.score = score;
+    console.log(this.gradeUpdate);
+    
+    if(!this.gradeUpdate.gradeId ||
+       !this.gradeUpdate.studentId || 
+       !this.gradeUpdate.score || 
+       !this.gradeUpdate.yearId || 
+       !this.idTeacher || 
+       (this.idTeacher != this.gradeUpdate.teacherId)) {
+      alert("You can't update this grade");
+      return;
+    }
+   
 
+    this.gradeService.UpdateGrade(this.gradeUpdate).subscribe((res) => {
+      if (res.success) {
+        alert(res.message);
+        this.grades = res.data;
+      }
+      else {
+        alert(res.message);
+      }
+    })
+  }
+
+
+  
 }

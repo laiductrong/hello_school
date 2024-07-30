@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { serviceResponse } from '../models/serviceResponse';
 import { Observable } from 'rxjs';
-import { AddGrade } from '../models/grade';
+import { AddGrade, UpdateGrade } from '../models/grade';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -30,6 +30,11 @@ export class GradeService {
   }
   public DeleteGrade(gradeId: number): Observable<serviceResponse> {
     return this.http.delete<serviceResponse>(this.url + "/Delete/" + gradeId, httpOptions).pipe(
+      // catchError(this.handleError)
+    );
+  }
+  public UpdateGrade(grade: UpdateGrade): Observable<serviceResponse> {
+    return this.http.put<serviceResponse>(this.url + "/Update", grade, httpOptions).pipe(
       // catchError(this.handleError)
     );
   }
