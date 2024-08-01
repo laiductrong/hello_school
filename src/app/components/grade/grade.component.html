@@ -1,20 +1,21 @@
 <div class="container mt-4">
   <button class="btn btn-outline-success mb-2 me-2" (click)="openScrollableContent(longContent)">Add Grade</button>
     <h2>List of Grades</h2>
+    <input type="text" value="" placeholder="Search..." (input)="filterGrades(search.value)" #search>
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Grade ID</th>
-          <th>Student ID</th>
-          <th>Student Name</th>         
-          <th>Teacher Name</th>
-          <th>Subject Name</th>
-          <th>Score</th>
-          <th>Acction</th>
+          <th (click)="sortData('gradeId')">Grade ID <span *ngIf="sortColumn === 'gradeId'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span></th>
+          <th (click)="sortData('studentId')">Student ID <span *ngIf="sortColumn === 'studentId'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span></th>
+          <th (click)="sortData('studentName')">Student Name <span *ngIf="sortColumn === 'studentName'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span></th>
+          <th (click)="sortData('teacherName')">Teacher Name <span *ngIf="sortColumn === 'teacherName'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span></th>
+          <th (click)="sortData('subjectName')">Subject Name <span *ngIf="sortColumn === 'subjectName'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span></th>
+          <th (click)="sortData('score')">Score <span *ngIf="sortColumn === 'score'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span></th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let grade of grades | paginate: { itemsPerPage: pageSize, currentPage: page }">
+        <tr *ngFor="let grade of filteredGrades  | paginate: { itemsPerPage: pageSize, currentPage: page }">
           <td>{{grade.gradeId}}</td>
           <td>{{grade.studentId}}</td>
           <td>{{grade.studentName}}</td>

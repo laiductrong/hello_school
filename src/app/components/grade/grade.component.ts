@@ -19,6 +19,23 @@ import { AuthService } from '../../services/auth.service';
 })
 export class GradeComponent {
   grades: Grade[] = [];
+  idTeacher: any; //id teacher from token
+  sortedGrades: Grade[] = []; //sorted grade
+   //column sort
+  sortColumn = '';
+  sortDirection = 'asc';
+  //search
+  filteredGrades: Grade[] = [];
+  idYear: any;// id year to add or update
+   //pagination
+   page: number = 1;
+   pageSize: number = 5;
+   //data
+   students: Student[] = [];
+   subjects: Subject[] = [];
+   academicYears: Academic[] = [];
+   classes: Class[] = [];
+
   constructor(
     private gradeService: GradeService,
     private subjectService: SubjectService,
@@ -51,18 +68,39 @@ export class GradeComponent {
     this.gradeUpdate.yearId = grade.yearId;
     this.modalService.open(longContent, { scrollable: true });
   }
-  idTeacher: any;
+  
   ngOnInit(): void {
     this.idTeacher = this.auth.getUserId();
     this.getGradents();
+    this.sortedGrades = [...this.grades];
   }
-  //pagination
-  page: number = 1;
-  pageSize: number = 5;
-  students: Student[] = [];
-  subjects: Subject[] = [];
-  academicYears: Academic[] = [];
-  classes: Class[] = [];
+ 
+  sortData(column: string) {
+    if (this.sortColumn === column) {
+      this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.sortDirection = 'asc';
+    }
+    this.sortColumn = column;
+
+    this.grades.sort((a, b) => {
+      const valueA = (a as any)[column];
+      const valueB = (b as any)[column];
+
+      let comparison = 0;
+      if (typeof valueA === 'string' && typeof valueB === 'string') {
+        comparison = valueA.localeCompare(valueB);
+      } else if (typeof valueA === 'number' && typeof valueB === 'number') {
+        comparison = valueA - valueB;
+      } else if (valueA > valueB) {
+        comparison = 1;
+      } else if (valueA < valueB) {
+        comparison = -1;
+      }
+
+      return this.sortDirection === 'asc' ? comparison : -comparison;
+    });
+  }
   getGradents() {
     this.gradeService.GetGrade().subscribe((res) => {
       if (res.success) {
@@ -140,7 +178,7 @@ export class GradeComponent {
 
 
 
-  idYear: any;
+  
   addGrade(idStudent: any, score: any) {
     const grade: AddGrade = {
       studentId: idStudent,
@@ -152,8 +190,6 @@ export class GradeComponent {
       alert("Please fill in all fields or login again");
       return;
     }
-    console.log(this.idYear);
-    
     this.gradeService.AddGrade(grade).subscribe((res) => {
       if (res.success) {
         alert(res.message);
@@ -187,9 +223,7 @@ export class GradeComponent {
       alert("Please input score between 0 and 100");
       return;
     }
-    this.gradeUpdate.score = score;
-    console.log(this.gradeUpdate);
-    
+    this.gradeUpdate.score = score;   
     if(!this.gradeUpdate.gradeId ||
        !this.gradeUpdate.studentId || 
        !this.gradeUpdate.score || 
@@ -199,8 +233,6 @@ export class GradeComponent {
       alert("You can't update this grade");
       return;
     }
-   
-
     this.gradeService.UpdateGrade(this.gradeUpdate).subscribe((res) => {
       if (res.success) {
         alert(res.message);
@@ -212,6 +244,22 @@ export class GradeComponent {
     })
   }
 
+  //search
+  filterGrades(keyword: string | null) {
+    if(!keyword) {
+      return;
+    }
+    keyword = keyword.toLowerCase();
+    this.filteredGrades = this.grades.filter(grade => 
+      grade.gradeId.toString().toLowerCase().includes(keyword) ||
+      grade.studentId.toString().toLowerCase().includes(keyword) ||
+      grade.studentName.toLowerCase().includes(keyword) ||
+      grade.teacherName.toLowerCase().includes(keyword) ||
+      grade.subjectName.toLowerCase().includes(keyword) ||
+      grade.score.toString().toLowerCase().includes(keyword)
+    );
+  }
 
+  
   
 }
