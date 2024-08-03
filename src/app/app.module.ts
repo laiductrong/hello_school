@@ -24,7 +24,9 @@ import { GradeComponent } from './components/grade/grade.component';
 import { SubjectComponent } from './components/subject/subject.component';
 import { ManagerAccountComponent } from './components/manager-account/manager-account.component';
 import { TeacherComponent } from './components/teacher/teacher.component';
+import { FilterPipe } from './filter.pipe';
 
+//import { Ng2SearchPipeModule } from 'ng2-search-filter/ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -39,12 +41,14 @@ import { TeacherComponent } from './components/teacher/teacher.component';
     GradeComponent,
     SubjectComponent,
     ManagerAccountComponent,
-    TeacherComponent
+    TeacherComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    
     FormsModule,
     MatTabsModule, // Tab
     MatDatepickerModule,

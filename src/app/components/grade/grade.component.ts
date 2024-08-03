@@ -245,12 +245,13 @@ export class GradeComponent {
   }
 
   //search
+  searchKeyword = '';
   filterGrades(keyword: string | null) {
     if(!keyword) {
       return;
     }
     keyword = keyword.toLowerCase();
-    this.filteredGrades = this.grades.filter(grade => 
+    this.grades = this.grades.filter(grade => 
       grade.gradeId.toString().toLowerCase().includes(keyword) ||
       grade.studentId.toString().toLowerCase().includes(keyword) ||
       grade.studentName.toLowerCase().includes(keyword) ||
