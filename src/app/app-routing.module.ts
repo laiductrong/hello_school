@@ -12,10 +12,14 @@ import { GradeComponent } from './components/grade/grade.component';
 import { SubjectComponent } from './components/subject/subject.component';
 import { ManagerAccountComponent } from './components/manager-account/manager-account.component';
 import { TeacherComponent } from './components/teacher/teacher.component';
+import { PaymentComponent } from './components/payment/payment.component';
+import { SalaryComponent } from './components/salary/salary.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent },
   { path: 'account', component: AccountComponent },
+  { path: 'payment', component: PaymentComponent },
+  { path: 'salary', component: SalaryComponent },
   { path: 'home', component: HomeComponent,
     canActivateChild: [authGuard] ,
     children: [

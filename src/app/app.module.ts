@@ -25,6 +25,8 @@ import { SubjectComponent } from './components/subject/subject.component';
 import { ManagerAccountComponent } from './components/manager-account/manager-account.component';
 import { TeacherComponent } from './components/teacher/teacher.component';
 import { FilterPipe } from './filter.pipe';
+import { PaymentComponent } from './components/payment/payment.component';
+import { SalaryComponent } from './components/salary/salary.component';
 
 //import { Ng2SearchPipeModule } from 'ng2-search-filter/ng2-search-filter';
 
@@ -42,7 +44,9 @@ import { FilterPipe } from './filter.pipe';
     SubjectComponent,
     ManagerAccountComponent,
     TeacherComponent,
-    FilterPipe
+    FilterPipe,
+    PaymentComponent,
+    SalaryComponent
   ],
   imports: [
     BrowserModule,

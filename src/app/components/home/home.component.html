@@ -7,8 +7,8 @@
   <a *ngIf="role === 'Teacher'|| role === 'Manager' || role === 'Admin' " class="nav-link" routerLink="class"
     routerLinkActive="active">Class
   </a>
-  <a *ngIf="role === 'Teacher'|| role === 'Manager' || role === 'Admin' " class="nav-link" routerLink="teacher">
-    Teacher
+  <a *ngIf="role === 'Teacher'|| role === 'Manager' || role === 'Admin' " class="nav-link" routerLink="teacher" 
+    rowterLinkActive="active">Teacher
   </a>
   <a class="nav-link" routerLink="grade" routerLinkActive="active">Grade</a>
   <a *ngIf="role === 'Teacher'|| role === 'Manager' || role === 'Admin' " class="nav-link" routerLink="subject"

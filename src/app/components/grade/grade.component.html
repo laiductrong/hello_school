@@ -1,28 +1,30 @@
 <div class="container mt-4">
-  <button class="btn btn-outline-success mb-2 me-2" (click)="openScrollableContent(longContent)">Add Grade</button>
+  <button *ngIf="idStudent === null" class="btn btn-outline-success mb-2 me-2" (click)="openScrollableContent(longContent)">Add Grade</button>
     <h2>List of Grades</h2>
     <input class="form-control" type="search" [(ngModel)]="searchKeyword" name="search"> 
     <table class="table table-striped">
       <thead>
         <tr>
           <th (click)="sortData('gradeId')">Grade ID <span *ngIf="sortColumn === 'gradeId'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span></th>
+          <th (click)="sortData('yearName')">Year <span *ngIf="sortColumn === 'yearName'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span></th>
           <th (click)="sortData('studentId')">Student ID <span *ngIf="sortColumn === 'studentId'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span></th>
           <th (click)="sortData('studentName')">Student Name <span *ngIf="sortColumn === 'studentName'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span></th>
           <th (click)="sortData('teacherName')">Teacher Name <span *ngIf="sortColumn === 'teacherName'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span></th>
           <th (click)="sortData('subjectName')">Subject Name <span *ngIf="sortColumn === 'subjectName'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span></th>
           <th (click)="sortData('score')">Score <span *ngIf="sortColumn === 'score'">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span></th>
-          <th>Action</th>
+          <th *ngIf="idStudent === null">Action</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let grade of grades | filter: searchKeyword |paginate: { itemsPerPage: pageSize, currentPage: page }">
           <td>{{grade.gradeId}}</td>
+          <td>{{grade.yearName}}</td>
           <td>{{grade.studentId}}</td>
           <td>{{grade.studentName}}</td>
           <td>{{grade.teacherName}}</td>
           <td>{{grade.subjectName}}</td>
           <td>{{grade.score}}</td>
-          <td>
+          <td *ngIf="idStudent === null">
             <button class="btn btn-outline-primary" (click)="openScrollableContent2(longContent2,grade)">
               Update
             </button>
