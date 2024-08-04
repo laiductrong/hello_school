@@ -38,4 +38,9 @@ export class GradeService {
       // catchError(this.handleError)
     );
   }
+  public GetGradeByStudent(studentId: number): Observable<serviceResponse> {
+    return this.http.get<serviceResponse>(this.url + "/ByStudent/" + studentId, httpOptions).pipe(
+      
+    );
+  }
 }

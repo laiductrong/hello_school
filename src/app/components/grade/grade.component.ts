@@ -20,21 +20,22 @@ import { AuthService } from '../../services/auth.service';
 export class GradeComponent {
   grades: Grade[] = [];
   idTeacher: any; //id teacher from token
+  idStudent: any; //id student
   sortedGrades: Grade[] = []; //sorted grade
-   //column sort
+  //column sort
   sortColumn = '';
   sortDirection = 'asc';
   //search
   filteredGrades: Grade[] = [];
   idYear: any;// id year to add or update
-   //pagination
-   page: number = 1;
-   pageSize: number = 5;
-   //data
-   students: Student[] = [];
-   subjects: Subject[] = [];
-   academicYears: Academic[] = [];
-   classes: Class[] = [];
+  //pagination
+  page: number = 1;
+  pageSize: number = 5;
+  //data
+  students: Student[] = [];
+  subjects: Subject[] = [];
+  academicYears: Academic[] = [];
+  classes: Class[] = [];
 
   constructor(
     private gradeService: GradeService,
@@ -68,13 +69,25 @@ export class GradeComponent {
     this.gradeUpdate.yearId = grade.yearId;
     this.modalService.open(longContent, { scrollable: true });
   }
-  
+
   ngOnInit(): void {
-    this.idTeacher = this.auth.getUserId();
+    this.idTeacher = this.checkRoleTeacher();
+    this.idStudent = this.checkRoleStuident();
     this.getGradents();
-    this.sortedGrades = [...this.grades];
+    //this.sortedGrades = [...this.grades];
   }
- 
+
+  checkRoleTeacher(): string | null {
+    if (this.auth.getUserRole() === 'Teacher')
+      return this.auth.getUserId();
+    return null;
+  }
+  checkRoleStuident(): string | null {
+    if (this.auth.getUserRole() === 'Student')
+      return this.auth.getUserId();
+    return null;
+  }
+
   sortData(column: string) {
     if (this.sortColumn === column) {
       this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
@@ -102,14 +115,26 @@ export class GradeComponent {
     });
   }
   getGradents() {
-    this.gradeService.GetGrade().subscribe((res) => {
-      if (res.success) {
-        this.grades = res.data;
-      }
-      else {
-        console.log(res.message);
-      }
-    })
+    if (this.idStudent != null) {
+      this.gradeService.GetGradeByStudent(this.idStudent).subscribe((res) => {
+        if (res.success) {
+          this.grades = res.data;
+        }
+        else {
+          console.log(res.message);
+        }
+      });
+    }
+    else {
+      this.gradeService.GetGrade().subscribe((res) => {
+        if (res.success) {
+          this.grades = res.data;
+        }
+        else {
+          console.log(res.message);
+        }
+      })
+    }
   }
   getSubjects() {
     this.subjectService.GetSubject().subscribe((res) => {
@@ -146,7 +171,7 @@ export class GradeComponent {
   getClassByAY(ayId: any) {
     this.classService.GetClassByAY(ayId).subscribe((res) => {
       if (res.success) {
-        this.classes = res.data;        
+        this.classes = res.data;
       }
       else {
         console.log(res.message);
@@ -178,7 +203,7 @@ export class GradeComponent {
 
 
 
-  
+
   addGrade(idStudent: any, score: any) {
     const grade: AddGrade = {
       studentId: idStudent,
@@ -186,7 +211,7 @@ export class GradeComponent {
       score: score,
       yearId: this.idYear
     }
-    if(!score || !this.idYear || !idStudent || !this.idTeacher) {
+    if (!score || !this.idYear || !idStudent || !this.idTeacher) {
       alert("Please fill in all fields or login again");
       return;
     }
@@ -202,7 +227,7 @@ export class GradeComponent {
   }
 
   deleteGrade(id: number, teacherId: number) {
-    if(!id || !teacherId || !this.idTeacher || (this.idTeacher != teacherId)) {
+    if (!id || !teacherId || !this.idTeacher || (this.idTeacher != teacherId)) {
       alert("You can't delete this grade");
       return;
     }
@@ -219,17 +244,17 @@ export class GradeComponent {
 
   updateGrade(scoreInput: any) {
     const score = parseInt(scoreInput, 10);
-    if(!score || (score < 0) || (score > 100)) {
+    if (!score || (score < 0) || (score > 100)) {
       alert("Please input score between 0 and 100");
       return;
     }
-    this.gradeUpdate.score = score;   
-    if(!this.gradeUpdate.gradeId ||
-       !this.gradeUpdate.studentId || 
-       !this.gradeUpdate.score || 
-       !this.gradeUpdate.yearId || 
-       !this.idTeacher || 
-       (this.idTeacher != this.gradeUpdate.teacherId)) {
+    this.gradeUpdate.score = score;
+    if (!this.gradeUpdate.gradeId ||
+      !this.gradeUpdate.studentId ||
+      !this.gradeUpdate.score ||
+      !this.gradeUpdate.yearId ||
+      !this.idTeacher ||
+      (this.idTeacher != this.gradeUpdate.teacherId)) {
       alert("You can't update this grade");
       return;
     }
@@ -247,11 +272,11 @@ export class GradeComponent {
   //search
   searchKeyword = '';
   filterGrades(keyword: string | null) {
-    if(!keyword) {
+    if (!keyword) {
       return;
     }
     keyword = keyword.toLowerCase();
-    this.grades = this.grades.filter(grade => 
+    this.grades = this.grades.filter(grade =>
       grade.gradeId.toString().toLowerCase().includes(keyword) ||
       grade.studentId.toString().toLowerCase().includes(keyword) ||
       grade.studentName.toLowerCase().includes(keyword) ||
@@ -261,6 +286,6 @@ export class GradeComponent {
     );
   }
 
-  
-  
+
+
 }
