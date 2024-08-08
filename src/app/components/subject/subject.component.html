@@ -1,1 +1,23 @@
-<p>subject works!</p>
+<div class="container mt-4">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Subject Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let subject of subjects | paginate: { itemsPerPage: pageSize, currentPage: page }">
+                <td>{{subject.subjectId}}</td>
+                <td>{{subject.name}}</td>
+                <td>
+                    <button class="btn btn-outline-primary" (click)="viewListTeacher(subject.subjectId)">
+                        View Teacher
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+</div>

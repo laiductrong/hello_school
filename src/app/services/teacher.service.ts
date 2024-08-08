@@ -40,4 +40,7 @@ export class TeacherService {
   public DeleteTeacher(teacherId: number): Observable<serviceResponse> {
     return this.http.delete<serviceResponse>(this.url + "/DeleteTeacher/" + teacherId, httpOptions).pipe();
   }
+  public GetTeachersBySubjectId(id: number): Observable<serviceResponse> {
+    return this.http.get<serviceResponse>(this.url + "/GetTeachersBySubject/" + id, httpOptions).pipe();
+  }
 }

@@ -19,5 +19,7 @@ export class SubjectService {
   private url = "https://localhost:7084/api/Subject";
 
   public GetSubject(): Observable<serviceResponse> {
-    return this.http.get<serviceResponse>(this.url+"/GetSubjects", httpOptions).pipe();}
+    return this.http.get<serviceResponse>(this.url+"/GetSubjects", httpOptions).pipe();
+  }
+  
 }

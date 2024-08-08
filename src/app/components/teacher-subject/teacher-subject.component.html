@@ -1,0 +1,30 @@
+<div class="container mt-4">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Name</th>
+                <th>Birth Date</th>
+                <th>Address</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>Class Name</th>
+                <td>Action</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let teacher of teachers | paginate: { itemsPerPage: pageSize, currentPage: page }">
+                <td>{{teacher.teacherId}}</td>
+                <td>{{teacher.name}}</td>
+                <td>{{teacher.birthDate}}</td>
+                <td>{{teacher.address}}</td>
+                <td>{{teacher.phoneNumber}}</td>
+                <td>{{teacher.email}}</td>
+                <td>{{teacher.subjectName}}</td>
+                <td>
+                    <button>ok</button>>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -14,12 +14,14 @@ import { ManagerAccountComponent } from './components/manager-account/manager-ac
 import { TeacherComponent } from './components/teacher/teacher.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { SalaryComponent } from './components/salary/salary.component';
+import { TeacherSubjectComponent } from './components/teacher-subject/teacher-subject.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent },
   { path: 'account', component: AccountComponent },
   { path: 'payment', component: PaymentComponent },
   { path: 'salary', component: SalaryComponent },
+  { path: 'subject/teacher/:id', component: TeacherSubjectComponent },
   { path: 'home', component: HomeComponent,
     canActivateChild: [authGuard] ,
     children: [
