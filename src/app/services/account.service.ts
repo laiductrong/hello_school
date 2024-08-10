@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { serviceResponse } from '../models/serviceResponse';
 import { Login } from '../models/login';
+import { BASE_URL } from '../constants/base-url';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -22,7 +23,7 @@ const httpOptions = {
 
 export class AccountService {
 
-  private url = "https://localhost:7084/api/UserAccount";
+  private url = BASE_URL+"UserAccount";
   constructor(private http: HttpClient) { }
 
   public getUser(): Observable<serviceResponse>{

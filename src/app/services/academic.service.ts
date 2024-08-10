@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { serviceResponse } from '../models/serviceResponse';
 import { Academic, AddAcademic } from '../models/academic';
 import { catchError, of, throwError } from 'rxjs';
+import { BASE_URL } from '../constants/base-url';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -18,7 +19,7 @@ const httpOptions = {
 export class AcademicService {
 
   constructor(private http: HttpClient) { }
-  private url = "https://localhost:7084/api/AY";
+  private url = BASE_URL+"AY";
 
   public GetAY(): Observable<serviceResponse> {
     return this.http.get<serviceResponse>(this.url + "/GetAcademicYears", httpOptions);

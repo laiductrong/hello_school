@@ -4,6 +4,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { Observable } from 'rxjs/internal/Observable';
 import { serviceResponse } from '../models/serviceResponse';
 import { AddClass, Class, UpdateClass } from '../models/class';
+import { BASE_URL } from '../constants/base-url';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -15,7 +16,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ClassService {
-  private url = "https://localhost:7084/api/Class";
+  private url = BASE_URL+"Class";
 
   constructor(
     private http: HttpClient,

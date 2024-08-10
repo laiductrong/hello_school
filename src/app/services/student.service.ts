@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { map, Observable, throwError } from 'rxjs';
 import { serviceResponse } from '../models/serviceResponse';
 import { AddStudent, Student, UpdateStudent } from '../models/student';
+import { BASE_URL } from '../constants/base-url';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -16,7 +17,7 @@ const httpOptions = {
 export class StudentService {
 
   constructor(private http: HttpClient) { }
-  private url = "https://localhost:7084/api/Student";
+  private url = BASE_URL+"Student";
 
   public getStudents(): Observable<serviceResponse> {
     return this.http.get<serviceResponse>(this.url + "/GetStudents", httpOptions);

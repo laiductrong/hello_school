@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { serviceResponse } from '../models/serviceResponse';
 import { Observable } from 'rxjs';
 import { AddGrade, UpdateGrade } from '../models/grade';
+import { BASE_URL } from '../constants/base-url';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -15,7 +16,7 @@ const httpOptions = {
 })
 export class GradeService {
 
-  private url = "https://localhost:7084/api/Grade";
+  private url = BASE_URL+"Grade";
   constructor(private http: HttpClient) { }
 
   public GetGrade(): Observable<serviceResponse> {

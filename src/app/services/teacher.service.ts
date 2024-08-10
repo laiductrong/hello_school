@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { serviceResponse } from '../models/serviceResponse';
 import { Observable } from 'rxjs';
 import { AddTeacher, Teacher, UpdateTeacher } from '../models/teacher';
+import { BASE_URL } from '../constants/base-url';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -16,7 +17,7 @@ const httpOptions = {
 })
 export class TeacherService {
 
-  private url = "https://localhost:7084/api/Teacher";
+  private url = BASE_URL+"Teacher";
   constructor(private http : HttpClient) { }
 
   public GetTeacherNoClass(): Observable<serviceResponse> {
