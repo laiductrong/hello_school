@@ -1,1 +1,26 @@
-<p>{{students.length}}</p>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Student ID</th>
+        <th>Name</th>
+        <th>Birth Date</th>
+        <th>Address</th>
+        <th>Phone Number</th>
+        <th>Email</th>
+        <th>Class Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students " >
+        <td>{{student.studentId}}</td>
+        <td>{{student.name}}</td>
+        <td>{{student.birthDate}}</td>
+        <td>{{student.address}}</td>
+        <td>{{student.phoneNumber}}</td>
+        <td>{{student.email}}</td>
+        <td>{{student.className}}</td>
+        <td>
+        </td>
+      </tr>
+    </tbody>
+  </table>

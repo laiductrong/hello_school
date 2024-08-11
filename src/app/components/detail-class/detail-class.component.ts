@@ -15,40 +15,45 @@ export class DetailClassComponent {
    */
   students: Student[] = [];
   constructor(private StudentService: StudentService, private route: ActivatedRoute) {
-    
+    //this.checkAndGetStudents();
   }
-  ngOnint(): void {
+  ngAfterViewInit(): void {
+    console.log("onint");
     this.checkAndGetStudents();
-  }
-  checkAndGetStudents() {
-    console.log("hji");
+    console.log("end onint");
     
-    var id = this.getIdClass();
-    if(id!=null) {
+  }
+  async checkAndGetStudents() {
+    console.log("checkAndGetStudents");
+    const id = await this.getIdClass();
+    console.log("get id ok");
+    
+    console.log(id);
+    if (id != null) {
+      console.log("id khac null");
+      
       this.getStudentsByClassId(id);
     }
   }
   getStudentsByClassId(id: any) {
     this.StudentService.GetStudentByClass(id).subscribe((res) => {
-      if(res.success) {
+      if (res.success) {
         this.students = res.data;
-        console.log(res.message);
-        
-        console.log(this.students);
-        
       }
       else {
         console.log(res.message);
       }
     })
   }
-  getIdClass(){
-    this.route.paramMap.subscribe(params => {
-      if(params.get('id')!=null) {
-        return params.get('id');
-      }
-      return null;
-      // Thực hiện các hành động khác với `id` ở đây
+  getIdClass(): Promise<string | null> {
+    return new Promise((resolve) => {
+      this.route.paramMap.subscribe(params => {
+        if (params.get('id') != null) {
+          resolve(params.get('id'));
+        } else {
+          resolve(null);
+        }
+      });
     });
   }
 

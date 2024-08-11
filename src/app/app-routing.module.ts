@@ -22,7 +22,6 @@ const routes: Routes = [
   { path: 'account', component: AccountComponent },
   { path: 'payment', component: PaymentComponent },
   { path: 'salary', component: SalaryComponent },
-  { path: 'class/detail/:id', component: DetailClassComponent },
   { path: 'subject/teacher/:id', component: TeacherSubjectComponent },
   { path: 'home', component: HomeComponent,
     canActivateChild: [authGuard] ,
@@ -30,7 +29,7 @@ const routes: Routes = [
       { path: 'academic', component: AcademicComponent },
       { path: 'student', component: StudentComponent },
       { path: 'class', component: ClassComponent },
-      
+      { path: 'class/detail/:id', component: DetailClassComponent },
       { path: 'grade', component: GradeComponent },
       { path: 'subject', component: SubjectComponent },
       { path: 'manager-account', component: ManagerAccountComponent },
